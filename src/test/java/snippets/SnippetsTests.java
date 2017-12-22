@@ -75,4 +75,13 @@ public class SnippetsTests {
         long count = Snippets.countOccurrences(new int[]{1, 1, 2, 1, 2, 3}, 1);
         assertThat(count).isEqualTo(3);
     }
+
+    @Test
+    public void deepFlatten_flatten_a_deeply_nested_array() throws Exception {
+        int[] flatten = Snippets.deepFlatten(
+                new Object[]{1, new Object[]{2}, new Object[]{3, 4, 5}}
+        );
+
+        assertThat(flatten).isEqualTo(new int[]{1, 2, 3, 4, 5});
+    }
 }

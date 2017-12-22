@@ -91,3 +91,21 @@ public static long countOccurrences(int[] numbers, int value) {
             .count();
 }
 ```
+
+### deepFlatten
+
+Deep flattens an array.
+
+Use recursion. Use Array.stream().flatMapToInt()
+
+```java
+public static int[] deepFlatten(Object[] input) {
+    return Arrays.stream(input)
+            .flatMapToInt(o -> {
+                if (o instanceof Object[]) {
+                    return Arrays.stream(deepFlatten((Object[]) o));
+                }
+                return IntStream.of((Integer) o);
+            }).toArray();
+}
+```

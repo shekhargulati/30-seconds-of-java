@@ -84,4 +84,20 @@ public abstract class Snippets {
                 .count();
     }
 
+    /**
+     * Deep flattens an array.
+     *
+     * @param input A nested array containing integers
+     * @return flattened array
+     */
+    public static int[] deepFlatten(Object[] input) {
+        return Arrays.stream(input)
+                .flatMapToInt(o -> {
+                    if (o instanceof Object[]) {
+                        return Arrays.stream(deepFlatten((Object[]) o));
+                    }
+                    return IntStream.of((Integer) o);
+                }).toArray();
+    }
+
 }
