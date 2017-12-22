@@ -35,4 +35,10 @@ public class SnippetsTests {
         assertThat(gcd).isNotEmpty();
         assertThat(gcd).hasValue(24);
     }
+
+    @Test
+    public void max_of_array_containing_10_1_and_5_is_10() throws Exception {
+        OptionalInt max = Snippets.arrayMax(new int[]{10, 1, 5});
+        assertThat(max).hasValue(10);
+    }
 }

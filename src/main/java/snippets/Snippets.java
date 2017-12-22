@@ -17,6 +17,12 @@ public abstract class Snippets {
                 .reduce((a, b) -> gcd(a, b));
     }
 
+    /**
+     * Calculates the lowest common multiple (lcm) of an array of numbers.
+     *
+     * @param numbers Array of numbers
+     * @return lcm of array of numbers
+     */
     public static OptionalInt arrayLcm(int[] numbers) {
         IntBinaryOperator lcm = (x, y) -> (x * y) / gcd(x, y);
         return Arrays.stream(numbers)
@@ -28,6 +34,15 @@ public abstract class Snippets {
             return a;
         }
         return gcd(b, a % b);
+    }
+
+    /**
+     * Returns the maximum value in an array.
+     * @param numbers Array of numbers
+     * @return maximum value in an array
+     */
+    public static OptionalInt arrayMax(int[] numbers) {
+        return Arrays.stream(numbers).max();
     }
 
 }

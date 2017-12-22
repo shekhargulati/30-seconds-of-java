@@ -44,3 +44,13 @@ private static int gcd(int a, int b) {
     return gcd(b, a % b);
 }
 ```
+
+### arrayMax
+
+Returns the maximum value in an array.
+
+```java
+public static OptionalInt arrayMax(int[] numbers) {
+    return Arrays.stream(numbers).max();
+}
+```
