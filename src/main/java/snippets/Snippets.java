@@ -38,6 +38,7 @@ public abstract class Snippets {
 
     /**
      * Returns the maximum value in an array.
+     *
      * @param numbers Array of numbers
      * @return maximum value in an array
      */
@@ -45,4 +46,13 @@ public abstract class Snippets {
         return Arrays.stream(numbers).max();
     }
 
+    /**
+     * Returns the minimum value in an array.
+     *
+     * @param numbers Array of numbers
+     * @return minimum value in an array
+     */
+    public static OptionalInt arrayMin(int[] numbers) {
+        return Arrays.stream(numbers).min();
+    }
 }

@@ -54,3 +54,13 @@ public static OptionalInt arrayMax(int[] numbers) {
     return Arrays.stream(numbers).max();
 }
 ```
+
+### arrayMin
+
+Returns the minimum value in an array.
+
+```java
+public static OptionalInt arrayMin(int[] numbers) {
+    return Arrays.stream(numbers).min();
+}
+```
