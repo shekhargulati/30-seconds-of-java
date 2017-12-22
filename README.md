@@ -23,3 +23,24 @@ private static int gcd(int a, int b) {
     return gcd(b, a % b);
 }
 ```
+
+### arrayLcm
+
+Calculates the lowest common multiple (lcm) of an array of numbers.
+
+Use Array.stream().reduce() and the lcm formula (uses recursion) to calculate the lowest common multiple of an array of numbers.
+
+```java
+public static OptionalInt arrayLcm(int[] numbers) {
+    IntBinaryOperator lcm = (x, y) -> (x * y) / gcd(x, y);
+    return Arrays.stream(numbers)
+            .reduce((a, b) -> lcm.applyAsInt(a, b));
+}
+
+private static int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+```

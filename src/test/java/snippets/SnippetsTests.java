@@ -21,4 +21,18 @@ public class SnippetsTests {
         assertThat(gcd).isNotEmpty();
         assertThat(gcd).hasValue(4);
     }
+
+    @Test
+    public void lcm_of_array_containing_1_to_5_is_60() throws Exception {
+        OptionalInt lcm = Snippets.arrayLcm(new int[]{1, 2, 3, 4, 5});
+        assertThat(lcm).isNotEmpty();
+        assertThat(lcm).hasValue(60);
+    }
+
+    @Test
+    public void lcm_of_array_containing_4_8_and_12_is_24() throws Exception {
+        OptionalInt gcd = Snippets.arrayLcm(new int[]{4, 8, 12});
+        assertThat(gcd).isNotEmpty();
+        assertThat(gcd).hasValue(24);
+    }
 }
