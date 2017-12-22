@@ -77,3 +77,17 @@ public static int[][] chunk(int[] numbers, int size) {
             .toArray(int[][]::new);
 }
 ```
+
+### countOccurrences
+
+Counts the occurrences of a value in an array.
+
+Use Array.stream().filter().count() to count total number of values that equals the specified value.
+
+```java
+public static long countOccurrences(int[] numbers, int value) {
+    return Arrays.stream(numbers)
+            .filter(number -> number == value)
+            .count();
+}
+```

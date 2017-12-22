@@ -71,4 +71,17 @@ public abstract class Snippets {
                 .toArray(int[][]::new);
     }
 
+    /**
+     * Counts the occurrences of a value in an array.
+     *
+     * @param numbers Array of numbers
+     * @param value   the value for which we have to count occurrences
+     * @return count of total number of occurrences of the value
+     */
+    public static long countOccurrences(int[] numbers, int value) {
+        return Arrays.stream(numbers)
+                .filter(number -> number == value)
+                .count();
+    }
+
 }

@@ -69,4 +69,10 @@ public class SnippetsTests {
                         new int[]{5, 6}
                 );
     }
+
+    @Test
+    public void countOccurrences_counts_occurrences_of_a_value() throws Exception {
+        long count = Snippets.countOccurrences(new int[]{1, 1, 2, 1, 2, 3}, 1);
+        assertThat(count).isEqualTo(3);
+    }
 }
