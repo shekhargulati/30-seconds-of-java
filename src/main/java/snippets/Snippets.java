@@ -2,7 +2,9 @@ package snippets;
 
 import java.util.Arrays;
 import java.util.OptionalInt;
+import java.util.Set;
 import java.util.function.IntBinaryOperator;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public abstract class Snippets {
@@ -100,4 +102,16 @@ public abstract class Snippets {
                 }).toArray();
     }
 
+    /**
+     * Returns the difference between two arrays.
+     * @param first the first array
+     * @param second the second array
+     * @return Elements in first that are not in second
+     */
+    public static int[] difference(int[] first, int[] second) {
+        Set<Integer> set = Arrays.stream(second).boxed().collect(Collectors.toSet());
+        return Arrays.stream(first)
+                .filter(v -> !set.contains(v))
+                .toArray();
+    }
 }

@@ -84,4 +84,16 @@ public class SnippetsTests {
 
         assertThat(flatten).isEqualTo(new int[]{1, 2, 3, 4, 5});
     }
+
+    @Test
+    public void difference_between_array_with_1_2_3_and_array_with_1_2_4_is_3() throws Exception {
+        int[] difference = Snippets.difference(new int[]{1, 2, 3}, new int[]{1, 2, 4});
+        assertThat(difference).isEqualTo(new int[]{3});
+    }
+
+    @Test
+    public void difference_between_array_with_1_2_3_and_array_with_1_2_3_is_empty_array() throws Exception {
+        int[] difference = Snippets.difference(new int[]{1, 2, 3}, new int[]{1, 2, 3});
+        assertThat(difference).isEmpty();
+    }
 }

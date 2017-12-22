@@ -109,3 +109,18 @@ public static int[] deepFlatten(Object[] input) {
             }).toArray();
 }
 ```
+
+### difference
+
+Returns the difference between two arrays.
+
+Create a Set from b, then use Array.stream().filter() on a to only keep values not contained in b.
+
+```java
+public static int[] difference(int[] first, int[] second) {
+    Set<Integer> set = Arrays.stream(second).boxed().collect(Collectors.toSet());
+    return Arrays.stream(first)
+            .filter(v -> !set.contains(v))
+            .toArray();
+}
+```
