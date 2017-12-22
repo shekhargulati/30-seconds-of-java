@@ -13,7 +13,7 @@ public abstract class Snippets {
      */
     public static OptionalInt arrayGcd(int[] numbers) {
         return Arrays.stream(numbers)
-                .reduce(Snippets::gcd);
+                .reduce((a, b) -> gcd(a, b));
     }
 
     private static int gcd(int a, int b) {
