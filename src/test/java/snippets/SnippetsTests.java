@@ -47,4 +47,26 @@ public class SnippetsTests {
         OptionalInt min = Snippets.arrayMin(new int[]{10, 1, 5});
         assertThat(min).hasValue(1);
     }
+
+    @Test
+    public void chunk_breaks_input_array__with_odd_length() throws Exception {
+        int[][] chunks = Snippets.chunk(new int[]{1, 2, 3, 4, 5}, 2);
+        assertThat(chunks)
+                .containsExactly(
+                        new int[]{1, 2},
+                        new int[]{3, 4},
+                        new int[]{5}
+                );
+    }
+
+    @Test
+    public void chunk_breaks_input_array__with_event_length() throws Exception {
+        int[][] chunks = Snippets.chunk(new int[]{1, 2, 3, 4, 5, 6}, 2);
+        assertThat(chunks)
+                .containsExactly(
+                        new int[]{1, 2},
+                        new int[]{3, 4},
+                        new int[]{5, 6}
+                );
+    }
 }

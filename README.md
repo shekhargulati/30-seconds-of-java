@@ -64,3 +64,16 @@ public static OptionalInt arrayMin(int[] numbers) {
     return Arrays.stream(numbers).min();
 }
 ```
+
+### chunk
+
+Chunks an array into smaller arrays of specified size.
+
+```java
+public static int[][] chunk(int[] numbers, int size) {
+    return IntStream.iterate(0, i -> i + size)
+            .limit((long) Math.ceil((double) numbers.length / size))
+            .mapToObj(cur -> Arrays.copyOfRange(numbers, cur, cur + size > numbers.length ? numbers.length : cur + size))
+            .toArray(int[][]::new);
+}
+```

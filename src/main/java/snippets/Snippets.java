@@ -3,6 +3,7 @@ package snippets;
 import java.util.Arrays;
 import java.util.OptionalInt;
 import java.util.function.IntBinaryOperator;
+import java.util.stream.IntStream;
 
 public abstract class Snippets {
 
@@ -55,4 +56,19 @@ public abstract class Snippets {
     public static OptionalInt arrayMin(int[] numbers) {
         return Arrays.stream(numbers).min();
     }
+
+    /**
+     * Chunks an array into smaller arrays of a specified size.
+     *
+     * @param numbers Input array of numbers
+     * @param size    The chunk size
+     * @return Smaller chunks
+     */
+    public static int[][] chunk(int[] numbers, int size) {
+        return IntStream.iterate(0, i -> i + size)
+                .limit((long) Math.ceil((double) numbers.length / size))
+                .mapToObj(cur -> Arrays.copyOfRange(numbers, cur, cur + size > numbers.length ? numbers.length : cur + size))
+                .toArray(int[][]::new);
+    }
+
 }
