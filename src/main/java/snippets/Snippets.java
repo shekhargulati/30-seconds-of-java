@@ -104,7 +104,8 @@ public abstract class Snippets {
 
     /**
      * Returns the difference between two arrays.
-     * @param first the first array
+     *
+     * @param first  the first array
      * @param second the second array
      * @return Elements in first that are not in second
      */
@@ -113,5 +114,21 @@ public abstract class Snippets {
         return Arrays.stream(first)
                 .filter(v -> !set.contains(v))
                 .toArray();
+    }
+
+    /**
+     * Filters out all values from an array for which the comparator function does not return true.
+     *
+     * @param first      the first array
+     * @param second     the second array
+     * @param comparator the comparator function
+     * @return the resulting array
+     */
+    public static int[] differenceWith(int[] first, int[] second, IntBinaryOperator comparator) {
+        return Arrays.stream(first)
+                .filter(a ->
+                        Arrays.stream(second)
+                                .noneMatch(b -> comparator.applyAsInt(a, b) == 0)
+                ).toArray();
     }
 }

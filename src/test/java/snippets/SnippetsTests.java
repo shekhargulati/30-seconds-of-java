@@ -96,4 +96,37 @@ public class SnippetsTests {
         int[] difference = Snippets.difference(new int[]{1, 2, 3}, new int[]{1, 2, 3});
         assertThat(difference).isEmpty();
     }
+
+    @Test
+    public void differenceWith_return_all_squares_that_do_not_exist_in_second() throws Exception {
+        int[] difference = Snippets.differenceWith(
+                new int[]{1, 4, 9, 16, 25},
+                new int[]{1, 2, 3, 6, 7},
+                (o1, o2) -> o1 - (o2 * o2)
+        );
+
+        assertThat(difference).isEqualTo(new int[]{16, 25});
+    }
+
+    @Test
+    public void differenceWith_returns_empty_array_when_two_arrays_are_equal_as_per_comparison_operation() throws Exception {
+        int[] difference = Snippets.differenceWith(
+                new int[]{1, 2, 3},
+                new int[]{1, 2, 3},
+                (o1, o2) -> o1 - o2
+        );
+
+        assertThat(difference).isEmpty();
+    }
+
+    @Test
+    public void differenceWith_returns_first_array_when_elements_in_second_array_are_not_comparable_as_per_comparison_operation() throws Exception {
+        int[] difference = Snippets.differenceWith(
+                new int[]{1, 2, 3},
+                new int[]{10, 11, 12},
+                (o1, o2) -> o1 - o2
+        );
+
+        assertThat(difference).isEqualTo(new int[]{1, 2, 3});
+    }
 }
