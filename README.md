@@ -201,3 +201,49 @@ public static int[] everyNth(int[] elements, int nth) {
              .toArray();
  }
 ```
+
+### indexOf
+
+Find index of element in the array. Return -1 in case element does not exist.
+
+Uses IntStream.range().filter() to find index of the element in the array.
+
+```java
+public static int indexOf(int[] elements, int el) {
+    return IntStream.range(0, elements.length)
+            .filter(idx -> elements[idx] == el)
+            .findFirst()
+            .orElse(-1);
+}
+```
+
+### lastIndexOf
+
+Find last index of element in the array. Return -1 in case element does not exist.
+
+Uses IntStream.iterate().limit().filter() to find index of the element in the array.
+
+
+```java
+public static int lastIndexOf(int[] elements, int el) {
+    return IntStream.iterate(elements.length - 1, i -> i - 1)
+            .limit(elements.length)
+            .filter(idx -> elements[idx] == el)
+            .findFirst()
+            .orElse(-1);
+}
+```
+
+### filterNonUnique
+
+Filters out the non-unique values in an array.
+
+Use Array.stream().filter() for an array containing only the unique values.
+
+```java
+public static int[] filterNonUnique(int[] elements) {
+    return Arrays.stream(elements)
+            .filter(el -> indexOf(elements, el) == lastIndexOf(elements, el))
+            .toArray();
+}
+```

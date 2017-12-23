@@ -186,4 +186,51 @@ public abstract class Snippets {
                 .map(i -> elements[i])
                 .toArray();
     }
+
+    /**
+     * Filters out the non-unique values in an array.
+     *
+     * Use Array.stream().filter() for an array containing only the unique values.
+     *
+     * @param elements input array
+     * @return unique values in the array
+     */
+    public static int[] filterNonUnique(int[] elements) {
+        return Arrays.stream(elements)
+                .filter(el -> indexOf(elements, el) == lastIndexOf(elements, el))
+                .toArray();
+    }
+
+    /**
+     * Find index of element in the array. Return -1 in case element does not exist.
+     *
+     * Uses IntStream.range().filter() to find index of the element in the array.
+     *
+     * @param elements input array
+     * @param el element to find
+     * @return index of the element
+     */
+    public static int indexOf(int[] elements, int el) {
+        return IntStream.range(0, elements.length)
+                .filter(idx -> elements[idx] == el)
+                .findFirst()
+                .orElse(-1);
+    }
+
+    /**
+     * Find last index of element in the array. Return -1 in case element does not exist.
+     *
+     * Uses IntStream.iterate().limit().filter() to find index of the element in the array.
+     *
+     * @param elements input array
+     * @param el element to find
+     * @return index of the element
+     */
+    public static int lastIndexOf(int[] elements, int el) {
+        return IntStream.iterate(elements.length - 1, i -> i - 1)
+                .limit(elements.length)
+                .filter(idx -> elements[idx] == el)
+                .findFirst()
+                .orElse(-1);
+    }
 }

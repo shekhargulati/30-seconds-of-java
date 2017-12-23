@@ -174,4 +174,23 @@ public class SnippetsTests {
         int[] elements = Snippets.everyNth(new int[]{1, 2, 3, 4, 5, 6}, 2);
         assertThat(elements).isEqualTo(new int[]{2, 4, 6});
     }
+
+    @Test
+    public void filterNonUnique_return_unique_elements() throws Exception {
+        int[] elements = Snippets.filterNonUnique(new int[]{1, 2, 2, 3, 4, 4, 5});
+        assertThat(elements).isEqualTo(new int[]{1, 3, 5});
+    }
+
+    @Test
+    public void filterNonUnique_return_same_array_when_all_unique() throws Exception {
+        int[] elements = Snippets.filterNonUnique(new int[]{1, 2, 3, 4, 5});
+        assertThat(elements).isEqualTo(new int[]{1, 2, 3, 4, 5});
+    }
+
+    @Test
+    public void filterNonUnique_return_empty_array_when_all_duplicated() throws Exception {
+        int[] elements = Snippets.filterNonUnique(new int[]{1, 1, 2, 2, 3, 3, 4, 4, 5, 5});
+        assertThat(elements).isEmpty();
+    }
+
 }
