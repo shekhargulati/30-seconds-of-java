@@ -264,3 +264,22 @@ public static int[] flatten(Object[] elements) {
             ).toArray();
 }
 ```
+
+### flattenDepth
+
+Flattens an array up to the specified depth.
+
+```java
+public static Object[] flattenDepth(Object[] elements, int depth) {
+    if (depth == 0) {
+        return elements;
+    }
+    return Arrays.stream(elements)
+            .flatMap(el -> el instanceof Object[]
+                    ? Arrays.stream(flattenDepth((Object[]) el, depth - 1))
+                    : Arrays.stream(new Object[]{el})
+            ).toArray();
+
+
+}
+```

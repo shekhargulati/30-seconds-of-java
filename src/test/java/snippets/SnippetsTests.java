@@ -198,4 +198,23 @@ public class SnippetsTests {
         int[] flatten = Snippets.flatten(new Object[]{1, new int[]{2}, 3, 4});
         assertThat(flatten).isEqualTo(new int[]{1, 2, 3, 4});
     }
+
+    @Test
+    public void flattenDepth_flatten_to_specified_depth() throws Exception {
+        Object[] input = {
+                1,
+                new Object[]{2},
+                new Object[]{
+                        new Object[]{
+                                new Object[]{
+                                        3
+                                },
+                                4
+                        }, 5
+                }
+        };
+
+        Object[] flatten = Snippets.flattenDepth(input, 2);
+        assertThat(flatten).isEqualTo(new Object[]{1, 2, new Object[]{3}, 4, 5});
+    }
 }

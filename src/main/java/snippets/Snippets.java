@@ -247,4 +247,24 @@ public abstract class Snippets {
                         : IntStream.of((int) el)
                 ).toArray();
     }
+
+    /**
+     * Flattens an array up to the specified depth.
+     *
+     * @param elements input array
+     * @param depth depth to which to flatten array
+     * @return flattened array
+     */
+    public static Object[] flattenDepth(Object[] elements, int depth) {
+        if (depth == 0) {
+            return elements;
+        }
+        return Arrays.stream(elements)
+                .flatMap(el -> el instanceof Object[]
+                        ? Arrays.stream(flattenDepth((Object[]) el, depth - 1))
+                        : Arrays.stream(new Object[]{el})
+                ).toArray();
+
+
+    }
 }
