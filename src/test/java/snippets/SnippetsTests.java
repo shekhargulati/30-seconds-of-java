@@ -232,4 +232,10 @@ public class SnippetsTests {
                         new SimpleEntry<>(5, Collections.singletonList("three"))
                 );
     }
+
+    @Test
+    public void initial_return_array_except_last_element() throws Exception {
+        Integer[] initial = Snippets.initial(new Integer[]{1, 2, 3});
+        assertThat(initial).isEqualTo(new Integer[]{1, 2});
+    }
 }
