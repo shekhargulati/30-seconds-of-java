@@ -247,3 +247,20 @@ public static int[] filterNonUnique(int[] elements) {
             .toArray();
 }
 ```
+
+### flatten
+
+Flattens an array.
+
+Use Array.stream().flatMapToInt().toArray() to create a new array.
+
+
+```java
+public static int[] flatten(Object[] elements) {
+    return Arrays.stream(elements)
+            .flatMapToInt(el -> el instanceof int[]
+                    ? Arrays.stream((int[]) el)
+                    : IntStream.of((int) el)
+            ).toArray();
+}
+```

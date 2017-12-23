@@ -193,4 +193,9 @@ public class SnippetsTests {
         assertThat(elements).isEmpty();
     }
 
+    @Test
+    public void flatten_flat_one_level_array() throws Exception {
+        int[] flatten = Snippets.flatten(new Object[]{1, new int[]{2}, 3, 4});
+        assertThat(flatten).isEqualTo(new int[]{1, 2, 3, 4});
+    }
 }

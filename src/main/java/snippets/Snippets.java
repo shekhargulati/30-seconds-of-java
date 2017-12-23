@@ -189,7 +189,7 @@ public abstract class Snippets {
 
     /**
      * Filters out the non-unique values in an array.
-     *
+     * <p>
      * Use Array.stream().filter() for an array containing only the unique values.
      *
      * @param elements input array
@@ -203,11 +203,11 @@ public abstract class Snippets {
 
     /**
      * Find index of element in the array. Return -1 in case element does not exist.
-     *
+     * <p>
      * Uses IntStream.range().filter() to find index of the element in the array.
      *
      * @param elements input array
-     * @param el element to find
+     * @param el       element to find
      * @return index of the element
      */
     public static int indexOf(int[] elements, int el) {
@@ -219,11 +219,11 @@ public abstract class Snippets {
 
     /**
      * Find last index of element in the array. Return -1 in case element does not exist.
-     *
+     * <p>
      * Uses IntStream.iterate().limit().filter() to find index of the element in the array.
      *
      * @param elements input array
-     * @param el element to find
+     * @param el       element to find
      * @return index of the element
      */
     public static int lastIndexOf(int[] elements, int el) {
@@ -232,5 +232,19 @@ public abstract class Snippets {
                 .filter(idx -> elements[idx] == el)
                 .findFirst()
                 .orElse(-1);
+    }
+
+    /**
+     * Flattens an array.
+     *
+     * @param elements input array
+     * @return flattened array
+     */
+    public static int[] flatten(Object[] elements) {
+        return Arrays.stream(elements)
+                .flatMapToInt(el -> el instanceof int[]
+                        ? Arrays.stream((int[]) el)
+                        : IntStream.of((int) el)
+                ).toArray();
     }
 }
