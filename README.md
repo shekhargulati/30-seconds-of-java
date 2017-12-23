@@ -283,3 +283,15 @@ public static Object[] flattenDepth(Object[] elements, int depth) {
 
 }
 ```
+
+### groupBy
+
+Groups the elements of an array based on the given function.
+
+Uses Arrays.stream().collect(Collectors.groupingBy()) to group based on the grouping function.
+
+```java
+public static <T, R> Map<R, List<T>> groupBy(T[] elements, Function<T, R> func) {
+    return Arrays.stream(elements).collect(Collectors.groupingBy(func));
+}
+```

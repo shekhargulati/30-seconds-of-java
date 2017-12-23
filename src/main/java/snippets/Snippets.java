@@ -1,8 +1,11 @@
 package snippets;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.OptionalInt;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
@@ -252,7 +255,7 @@ public abstract class Snippets {
      * Flattens an array up to the specified depth.
      *
      * @param elements input array
-     * @param depth depth to which to flatten array
+     * @param depth    depth to which to flatten array
      * @return flattened array
      */
     public static Object[] flattenDepth(Object[] elements, int depth) {
@@ -266,5 +269,17 @@ public abstract class Snippets {
                 ).toArray();
 
 
+    }
+
+    /**
+     * Groups the elements of an array based on the given function.
+     *
+     * @param elements input array
+     * @param func     function
+     * @param <T>      type parameter
+     * @return grouped elements in a Map
+     */
+    public static <T, R> Map<R, List<T>> groupBy(T[] elements, Function<T, R> func) {
+        return Arrays.stream(elements).collect(Collectors.groupingBy(func));
     }
 }

@@ -1,5 +1,10 @@
 package snippets;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.OptionalInt;
 
 import org.junit.Test;
@@ -216,5 +221,15 @@ public class SnippetsTests {
 
         Object[] flatten = Snippets.flattenDepth(input, 2);
         assertThat(flatten).isEqualTo(new Object[]{1, 2, new Object[]{3}, 4, 5});
+    }
+
+    @Test
+    public void group_elements_by_length() throws Exception {
+        Map<Integer, List<String>> groups = Snippets.groupBy(new String[]{"one", "two", "three"}, String::length);
+        assertThat(groups)
+                .containsExactly(
+                        new SimpleEntry<>(3, Arrays.asList("one", "two")),
+                        new SimpleEntry<>(5, Collections.singletonList("three"))
+                );
     }
 }
