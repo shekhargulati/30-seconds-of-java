@@ -309,4 +309,11 @@ public abstract class Snippets {
     public static int[] initializeArrayWithValues(int n, int value) {
         return IntStream.generate(() -> value).limit(n).toArray();
     }
+
+    public static int[] intersection(int[] first, int[] second) {
+        Set<Integer> set = Arrays.stream(second).boxed().collect(Collectors.toSet());
+        return Arrays.stream(first)
+                .filter(set::contains)
+                .toArray();
+    }
 }

@@ -250,4 +250,11 @@ public class SnippetsTests {
         int[] elements = Snippets.initializeArrayWithValues(5, 2);
         assertThat(elements).isEqualTo(new int[]{2, 2, 2, 2, 2});
     }
+
+    @Test
+    public void intersection_between_two_arrays() throws Exception {
+        int[] elements = Snippets.intersection(new int[]{1, 2, 3}, new int[]{4, 3, 2});
+        assertThat(elements).isEqualTo(new int[]{2, 3});
+
+    }
 }

@@ -327,3 +327,18 @@ public static int[] initializeArrayWithValues(int n, int value) {
     return IntStream.generate(() -> value).limit(n).toArray();
 }
 ```
+
+### intersection
+
+Returns a list of elements that exist in both arrays.
+
+Create a Set from second, then use Array.stream().filter() on a to only keep values contained in b.
+
+```java
+public static int[] intersection(int[] first, int[] second) {
+    Set<Integer> set = Arrays.stream(second).boxed().collect(Collectors.toSet());
+    return Arrays.stream(first)
+            .filter(set::contains)
+            .toArray();
+}
+```
