@@ -297,11 +297,16 @@ public abstract class Snippets {
 
     /**
      * Initializes an array containing the numbers in the specified range where start and end are inclusive.
+     *
      * @param end
      * @param start
      * @return
      */
     public static int[] initializeArrayWithRange(int end, int start) {
         return IntStream.rangeClosed(start, end).toArray();
+    }
+
+    public static int[] initializeArrayWithValues(int n, int value) {
+        return IntStream.generate(() -> value).limit(n).toArray();
     }
 }

@@ -317,3 +317,13 @@ public static int[] initializeArrayWithRange(int end, int start) {
     return IntStream.rangeClosed(start, end).toArray();
 }
 ```
+
+### initializeArrayWithValues
+
+Initializes and fills an array with the specified values.
+
+```java
+public static int[] initializeArrayWithValues(int n, int value) {
+    return IntStream.generate(() -> value).limit(n).toArray();
+}
+```
