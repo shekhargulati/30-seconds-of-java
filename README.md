@@ -155,4 +155,19 @@ public static int[] distinctValuesOfArray(int[] elements) {
 }
 ```
 
+### dropElements
+
+Removes elements in an array until the passed function returns true. Returns the remaining elements in the array.
+
+Loop through the array, using Arrays.copyOfRange() to drop the first element of the array until the returned value from the function is true. Returns the remaining elements.
+
+```java
+public static int[] dropElements(int[] elements, IntPredicate condition) {
+    while (elements.length > 0 && !condition.test(elements[0])) {
+        elements = Arrays.copyOfRange(elements, 1, elements.length);
+    }
+    return elements;
+}
+```
+
 

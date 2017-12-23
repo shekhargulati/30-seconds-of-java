@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.function.IntBinaryOperator;
+import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -140,5 +141,19 @@ public abstract class Snippets {
      */
     public static int[] distinctValuesOfArray(int[] elements) {
         return Arrays.stream(elements).distinct().toArray();
+    }
+
+    /**
+     * Removes elements in an array until the passed function returns true. Returns the remaining elements in the array.
+     *
+     * @param elements
+     * @param condition
+     * @return
+     */
+    public static int[] dropElements(int[] elements, IntPredicate condition) {
+        while (elements.length > 0 && !condition.test(elements[0])) {
+            elements = Arrays.copyOfRange(elements, 1, elements.length);
+        }
+        return elements;
     }
 }

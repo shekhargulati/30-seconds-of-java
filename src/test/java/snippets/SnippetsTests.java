@@ -135,4 +135,22 @@ public class SnippetsTests {
         int[] distinct = Snippets.distinctValuesOfArray(new int[]{1, 2, 2, 3, 4, 4, 5});
         assertThat(distinct).isEqualTo(new int[]{1, 2, 3, 4, 5});
     }
+
+    @Test
+    public void drop_elements_less_than_3() throws Exception {
+        int[] elements = Snippets.dropElements(new int[]{1, 2, 3, 4}, i -> i >= 3);
+        assertThat(elements).isEqualTo(new int[]{3, 4});
+    }
+
+    @Test
+    public void drop_elements_returns_empty_array_when_no_element_match_the_condition() throws Exception {
+        int[] elements = Snippets.dropElements(new int[]{1, 2, 3, 4}, i -> i < 1);
+        assertThat(elements).isEmpty();
+    }
+
+    @Test
+    public void drop_elements__return_all_elements_when_all_elements_match_the_condition() throws Exception {
+        int[] elements = Snippets.dropElements(new int[]{1, 2, 3, 4}, i -> i <= 4);
+        assertThat(elements).isEqualTo(new int[]{1, 2, 3, 4});
+    }
 }
