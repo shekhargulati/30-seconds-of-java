@@ -295,3 +295,25 @@ public static <T, R> Map<R, List<T>> groupBy(T[] elements, Function<T, R> func) 
     return Arrays.stream(elements).collect(Collectors.groupingBy(func));
 }
 ```
+
+### initial
+
+Returns all the elements of an array except the last one.
+Use Arrays.copyOfRange() to return all except the last one
+
+```java
+public static <T> T[] initial(T[] elements) {
+    return Arrays.copyOfRange(elements, 0, elements.length - 1);
+}
+```
+
+### initializeArrayWithRange
+
+Initializes an array containing the numbers in the specified range where start and end are inclusive.
+
+
+```java
+public static int[] initializeArrayWithRange(int end, int start) {
+    return IntStream.rangeClosed(start, end).toArray();
+}
+```

@@ -238,4 +238,11 @@ public class SnippetsTests {
         Integer[] initial = Snippets.initial(new Integer[]{1, 2, 3});
         assertThat(initial).isEqualTo(new Integer[]{1, 2});
     }
+
+    @Test
+    public void initializeArrayWithRange_from_1_to_5() throws Exception {
+        int[] numbers = Snippets.initializeArrayWithRange(5, 1);
+        assertThat(numbers).isEqualTo(new int[]{1, 2, 3, 4, 5});
+
+    }
 }
