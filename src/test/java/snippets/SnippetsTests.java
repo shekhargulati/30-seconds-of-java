@@ -129,4 +129,10 @@ public class SnippetsTests {
 
         assertThat(difference).isEqualTo(new int[]{1, 2, 3});
     }
+
+    @Test
+    public void distinct_remove_all_duplicate_values_from_an_array() throws Exception {
+        int[] distinct = Snippets.distinctValuesOfArray(new int[]{1, 2, 2, 3, 4, 4, 5});
+        assertThat(distinct).isEqualTo(new int[]{1, 2, 3, 4, 5});
+    }
 }

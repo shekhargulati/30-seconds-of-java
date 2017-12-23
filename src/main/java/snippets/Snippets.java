@@ -131,4 +131,14 @@ public abstract class Snippets {
                                 .noneMatch(b -> comparator.applyAsInt(a, b) == 0)
                 ).toArray();
     }
+
+    /**
+     * Returns all the distinct values of an array.
+     *
+     * @param elements ints
+     * @return distinct values
+     */
+    public static int[] distinctValuesOfArray(int[] elements) {
+        return Arrays.stream(elements).distinct().toArray();
+    }
 }

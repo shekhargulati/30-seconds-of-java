@@ -124,3 +124,35 @@ public static int[] difference(int[] first, int[] second) {
             .toArray();
 }
 ```
+
+### differenceWith
+
+Filters out all values from an array for which the comparator function does not return true.
+
+The comparator for int is implemented using IntBinaryOperator function.
+
+Uses Array.stream().filter and Array.stream().noneMatch() to find the appropriate values.
+
+```java
+public static int[] differenceWith(int[] first, int[] second, IntBinaryOperator comparator) {
+    return Arrays.stream(first)
+            .filter(a ->
+                    Arrays.stream(second)
+                            .noneMatch(b -> comparator.applyAsInt(a, b) == 0)
+            ).toArray();
+}
+```
+
+### distinctValuesOfArray
+
+Returns all the distinct values of an array.
+
+Uses Array.stream().distinct() to discard all duplicated values.
+
+```java
+public static int[] distinctValuesOfArray(int[] elements) {
+    return Arrays.stream(elements).distinct().toArray();
+}
+```
+
+
