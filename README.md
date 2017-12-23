@@ -170,4 +170,34 @@ public static int[] dropElements(int[] elements, IntPredicate condition) {
 }
 ```
 
+### dropRight
 
+Returns a new array with n elements removed from the right.
+
+Check if n is shorter than the given array and use Array.copyOfRange() to slice it accordingly or return an empty array.
+
+```java
+public static int[] dropRight(int[] elements, int n) {
+    if (n < 0) {
+        throw new IllegalArgumentException("n is less than 0");
+    }
+    return n < elements.length
+            ? Arrays.copyOfRange(elements, 0, elements.length - n)
+            : new int[0];
+}
+```
+
+### everyNth
+
+Returns every nth element in an array.
+
+Use Intstream.range().filter() to create a new array that contains every nth element of a given array.
+
+```java
+public static int[] everyNth(int[] elements, int nth) {
+     return IntStream.range(0, elements.length)
+             .filter(i -> i % nth == nth - 1)
+             .map(i -> elements[i])
+             .toArray();
+ }
+```

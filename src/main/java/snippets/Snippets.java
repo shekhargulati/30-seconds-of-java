@@ -156,4 +156,34 @@ public abstract class Snippets {
         }
         return elements;
     }
+
+    /**
+     * Returns a new array with n elements removed from the right
+     *
+     * @param elements
+     * @param n        number of elements to remove
+     * @return array after removing n elements
+     */
+    public static int[] dropRight(int[] elements, int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("n is less than 0");
+        }
+        return n < elements.length
+                ? Arrays.copyOfRange(elements, 0, elements.length - n)
+                : new int[0];
+    }
+
+    /**
+     * Returns every nth element in an array.
+     *
+     * @param elements
+     * @param nth
+     * @return
+     */
+    public static int[] everyNth(int[] elements, int nth) {
+        return IntStream.range(0, elements.length)
+                .filter(i -> i % nth == nth - 1)
+                .map(i -> elements[i])
+                .toArray();
+    }
 }

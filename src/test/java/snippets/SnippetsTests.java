@@ -153,4 +153,25 @@ public class SnippetsTests {
         int[] elements = Snippets.dropElements(new int[]{1, 2, 3, 4}, i -> i <= 4);
         assertThat(elements).isEqualTo(new int[]{1, 2, 3, 4});
     }
+
+    @Test
+    public void dropRight_remove_n_elements_from_right() throws Exception {
+        int[] elements = Snippets.dropRight(new int[]{1, 2, 3}, 1);
+        assertThat(elements).isEqualTo(new int[]{1, 2});
+
+        elements = Snippets.dropRight(new int[]{1, 2, 3}, 2);
+        assertThat(elements).isEqualTo(new int[]{1});
+
+        elements = Snippets.dropRight(new int[]{1, 2, 3}, 3);
+        assertThat(elements).isEmpty();
+
+        elements = Snippets.dropRight(new int[]{1, 2, 3}, 42);
+        assertThat(elements).isEmpty();
+    }
+
+    @Test
+    public void everyNth_return_every_2nd_element() throws Exception {
+        int[] elements = Snippets.everyNth(new int[]{1, 2, 3, 4, 5, 6}, 2);
+        assertThat(elements).isEqualTo(new int[]{2, 4, 6});
+    }
 }
