@@ -191,7 +191,7 @@ public static int[] dropRight(int[] elements, int n) {
 
 Returns every nth element in an array.
 
-Use Intstream.range().filter() to create a new array that contains every nth element of a given array.
+Use IntStream.range().filter() to create a new array that contains every nth element of a given array.
 
 ```java
 public static int[] everyNth(int[] elements, int nth) {
