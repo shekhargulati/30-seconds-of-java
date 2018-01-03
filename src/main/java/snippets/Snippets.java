@@ -1,5 +1,6 @@
 package snippets;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -325,5 +326,21 @@ public abstract class Snippets {
             else if ((val.compareTo(arr[i + 1]) * direction > 0)) return 0;
         }
         return direction;
+    }
+
+    public static <T> String join(T[] arr, String separator, String end) {
+        return IntStream.range(0, arr.length)
+                .mapToObj(i -> new SimpleEntry<>(i, arr[i]))
+                .reduce("", (acc, val) -> val.getKey() == arr.length - 2
+                        ? acc + val.getValue() + end
+                        : val.getKey() == arr.length - 1 ? acc + val.getValue() : acc + val.getValue() + separator, (fst, snd) -> fst);
+    }
+
+    public static <T> String join(T[] arr, String separator) {
+        return join(arr, separator, separator);
+    }
+
+    public static <T> String join(T[] arr) {
+        return join(arr, ",");
     }
 }

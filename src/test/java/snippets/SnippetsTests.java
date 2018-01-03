@@ -280,4 +280,28 @@ public class SnippetsTests {
         int sorted = Snippets.isSorted(new Integer[]{3, 4, 1, 0});
         assertThat(sorted).isEqualTo(0);
     }
+
+    @Test
+    public void join_should_create_string_from_an_array_with_different_sep_and_end() throws Exception {
+        String joined = Snippets.join(new String[]{"pen", "pineapple", "apple", "pen"}, ",", "&");
+        assertThat(joined).isEqualTo("pen,pineapple,apple&pen");
+    }
+
+    @Test
+    public void join_should_create_string_from_an_array_with_sep_only() throws Exception {
+        String joined = Snippets.join(new String[]{"pen", "pineapple", "apple", "pen"}, ",");
+        assertThat(joined).isEqualTo("pen,pineapple,apple,pen");
+    }
+
+    @Test
+    public void join_should_create_string_from_an_array_with_default_sep() throws Exception {
+        String joined = Snippets.join(new String[]{"pen", "pineapple", "apple", "pen"});
+        assertThat(joined).isEqualTo("pen,pineapple,apple,pen");
+    }
+
+    @Test
+    public void join_should_create_empty_string_with_empty_array() throws Exception {
+        String joined = Snippets.join(new String[]{});
+        assertThat(joined).isEqualTo("");
+    }
 }
