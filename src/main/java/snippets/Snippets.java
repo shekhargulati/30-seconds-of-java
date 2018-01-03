@@ -367,4 +367,8 @@ public abstract class Snippets {
                 .toArray((IntFunction<Map<String, Object>[]>) Map[]::new);
     }
 
+    public static <T> T sample(T[] arr) {
+        return arr[(int) Math.floor(Math.random() * arr.length)];
+    }
+
 }

@@ -349,4 +349,10 @@ public class SnippetsTests {
                         new SimpleEntry<String, Object>("id", 2),
                         new SimpleEntry<String, Object>("name", "mike"));
     }
+
+    @Test
+    public void sample_should_return_random_element() throws Exception {
+        Integer sample = Snippets.sample(new Integer[]{3, 7, 9, 11});
+        assertThat(sample).isIn(Arrays.asList(3, 7, 9, 11));
+    }
 }
