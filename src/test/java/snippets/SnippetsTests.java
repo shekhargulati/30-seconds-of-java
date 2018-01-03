@@ -355,4 +355,10 @@ public class SnippetsTests {
         Integer sample = Snippets.sample(new Integer[]{3, 7, 9, 11});
         assertThat(sample).isIn(Arrays.asList(3, 7, 9, 11));
     }
+
+    @Test
+    public void sampleSize_should_return_sample_of_size_array_length_when_sample_size_is_greater_than_array_size() throws Exception {
+        Integer[] sample = Snippets.sampleSize(new Integer[]{1, 2, 3}, 4);
+        assertThat(sample).hasSize(3);
+    }
 }

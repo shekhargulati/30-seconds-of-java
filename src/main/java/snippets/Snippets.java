@@ -371,4 +371,17 @@ public abstract class Snippets {
         return arr[(int) Math.floor(Math.random() * arr.length)];
     }
 
+    public static <T> T[] sampleSize(T[] input, int n) {
+        T[] arr = Arrays.copyOf(input, input.length);
+        int length = arr.length;
+        int m = length;
+        while (m > 0) {
+            int i = (int) Math.floor(Math.random() * m--);
+            T tmp = arr[i];
+            arr[i] = arr[m];
+            arr[m] = tmp;
+        }
+        return Arrays.copyOfRange(arr, 0, n > length ? length : n);
+    }
+
 }
