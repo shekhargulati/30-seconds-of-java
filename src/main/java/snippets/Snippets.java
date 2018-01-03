@@ -440,4 +440,8 @@ public abstract class Snippets {
     public static <T> T[] take(T[] arr, int n) {
         return Arrays.copyOfRange(arr, 0, n);
     }
+
+    public static <T> T[] takeRight(T[] arr, int n) {
+        return Arrays.copyOfRange(arr, arr.length - n, arr.length);
+    }
 }
