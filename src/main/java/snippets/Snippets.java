@@ -410,4 +410,12 @@ public abstract class Snippets {
         return (T[]) Array.newInstance(clz, 0);
     }
 
+
+    public static <T extends Comparable<? super T>> int sortedIndex(T[] arr, T el) {
+        boolean isDescending = arr[0].compareTo(arr[arr.length - 1]) > 0;
+        return IntStream.range(0, arr.length)
+                .filter(i -> isDescending ? el.compareTo(arr[i]) >= 0 : el.compareTo(arr[i]) <= 0)
+                .findFirst()
+                .orElse(arr.length);
+    }
 }

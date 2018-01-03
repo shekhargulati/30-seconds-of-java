@@ -373,4 +373,22 @@ public class SnippetsTests {
         String[] empty = Snippets.emptyArray(String.class);
         assertThat(empty).isEmpty();
     }
+
+    @Test
+    public void sortedIndex_descending() throws Exception {
+        int index = Snippets.sortedIndex(new Integer[]{5, 3, 2, 1}, 4);
+        assertThat(index).isEqualTo(1);
+    }
+
+    @Test
+    public void sortedIndex_ascending() throws Exception {
+        int index = Snippets.sortedIndex(new Integer[]{30, 50}, 40);
+        assertThat(index).isEqualTo(1);
+    }
+
+    @Test
+    public void sortedIndex_ascending_at_end() throws Exception {
+        int index = Snippets.sortedIndex(new Integer[]{30, 50}, 60);
+        assertThat(index).isEqualTo(2);
+    }
 }
