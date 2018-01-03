@@ -400,4 +400,14 @@ public class SnippetsTests {
         );
         assertThat(diff).isEqualTo(new Integer[]{3, 4});
     }
+
+    @Test
+    public void union_test() throws Exception {
+        Integer[] union = Snippets.union(
+                new Integer[]{1, 2, 3},
+                new Integer[]{1, 2, 4}
+        );
+
+        assertThat(union).isEqualTo(new Integer[]{1, 2, 3, 4});
+    }
 }

@@ -444,4 +444,10 @@ public abstract class Snippets {
     public static <T> T[] takeRight(T[] arr, int n) {
         return Arrays.copyOfRange(arr, arr.length - n, arr.length);
     }
+
+    public static <T> T[] union(T[] first, T[] second) {
+        Set<T> set = new HashSet<>(Arrays.asList(first));
+        set.addAll(Arrays.asList(second));
+        return set.toArray((T[]) Arrays.copyOf(new Object[0], 0, first.getClass()));
+    }
 }
