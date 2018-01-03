@@ -8,7 +8,9 @@ import java.util.OptionalInt;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.IntBinaryOperator;
+import java.util.function.IntFunction;
 import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -354,7 +356,15 @@ public abstract class Snippets {
     public static <T, R> Map<T, R> pick(Map<T, R> obj, T[] arr) {
         return Arrays.stream(arr)
                 .filter(obj::containsKey)
-                .collect(Collectors.toMap(k -> k , obj::get));
+                .collect(Collectors.toMap(k -> k, obj::get));
+    }
+
+    public static Map<String, Object>[] reducedFilter(Map<String, Object>[] data, String[] keys, Predicate<Map<String, Object>> fn) {
+        return Arrays.stream(data)
+                .filter(fn)
+                .map(el -> Arrays.stream(keys).filter(el::containsKey)
+                        .collect(Collectors.toMap(Function.identity(), el::get)))
+                .toArray((IntFunction<Map<String, Object>[]>) Map[]::new);
     }
 
 }

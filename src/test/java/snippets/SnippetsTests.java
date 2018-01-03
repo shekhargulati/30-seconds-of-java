@@ -329,4 +329,24 @@ public class SnippetsTests {
         Map<String, Integer> picked = Snippets.pick(obj, new String[]{"a", "c"});
         assertThat(picked).containsExactly(new SimpleEntry<>("a", 1), new SimpleEntry<>("c", 3));
     }
+
+    @Test
+    public void reducedFilter_Test() throws Exception {
+        Map<String, Object> item1 = new HashMap<>();
+        item1.put("id", 1);
+        item1.put("name", "john");
+        item1.put("age", 24);
+
+        Map<String, Object> item2 = new HashMap<>();
+        item2.put("id", 2);
+        item2.put("name", "mike");
+        item2.put("age", 50);
+
+        Map<String, Object>[] filtered = Snippets.reducedFilter((Map<String, Object>[]) new Map[]{item1, item2}, new String[]{"id", "name"}, item -> (Integer) item.get("age") > 24);
+        assertThat(filtered).hasSize(1);
+        assertThat(filtered[0])
+                .containsOnly(
+                        new SimpleEntry<String, Object>("id", 2),
+                        new SimpleEntry<String, Object>("name", "mike"));
+    }
 }
