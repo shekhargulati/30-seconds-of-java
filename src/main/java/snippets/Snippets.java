@@ -450,4 +450,11 @@ public abstract class Snippets {
         set.addAll(Arrays.asList(second));
         return set.toArray((T[]) Arrays.copyOf(new Object[0], 0, first.getClass()));
     }
+
+    public static <T> T[] without(T[] arr, T... elements) {
+        List<T> excludeElements = Arrays.asList(elements);
+        return Arrays.stream(arr)
+                .filter(el -> !excludeElements.contains(el))
+                .toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, arr.getClass()));
+    }
 }

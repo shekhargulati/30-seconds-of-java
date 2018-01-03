@@ -410,4 +410,15 @@ public class SnippetsTests {
 
         assertThat(union).isEqualTo(new Integer[]{1, 2, 3, 4});
     }
+
+    @Test
+    public void without_test() throws Exception {
+        Integer[] without = Snippets.without(
+                new Integer[]{2, 1, 2, 3},
+                1, 2
+
+        );
+
+        assertThat(without).isEqualTo(new Integer[]{3});
+    }
 }
