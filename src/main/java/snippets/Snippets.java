@@ -1,9 +1,11 @@
 package snippets;
 
+import java.lang.reflect.Array;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.function.Function;
@@ -395,6 +397,17 @@ public abstract class Snippets {
             arr[m] = tmp;
         }
         return arr;
+    }
+
+    public static <T> T[] similarity(T[] first, T[] second) {
+        return Arrays.stream(first)
+                .filter(a -> Arrays.stream(second).anyMatch(b -> Objects.equals(a, b)))
+                // Make a new array of first's runtime type, but empty content:
+                .toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, first.getClass()));
+    }
+
+    public static <T> T[] emptyArray(Class<T> clz) {
+        return (T[]) Array.newInstance(clz, 0);
     }
 
 }

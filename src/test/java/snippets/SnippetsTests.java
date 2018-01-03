@@ -361,4 +361,16 @@ public class SnippetsTests {
         Integer[] sample = Snippets.sampleSize(new Integer[]{1, 2, 3}, 4);
         assertThat(sample).hasSize(3);
     }
+
+    @Test
+    public void similarity_test() throws Exception {
+        Integer[] arr = Snippets.similarity(new Integer[]{1, 2, 3}, new Integer[]{1, 2, 4});
+        assertThat(arr).isEqualTo(new Integer[]{1, 2});
+    }
+
+    @Test
+    public void empty_array() throws Exception {
+        String[] empty = Snippets.emptyArray(String.class);
+        assertThat(empty).isEmpty();
+    }
 }
