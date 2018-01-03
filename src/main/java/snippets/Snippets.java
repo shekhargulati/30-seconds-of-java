@@ -351,4 +351,10 @@ public abstract class Snippets {
         return Arrays.copyOfRange(arr, arr.length + n, arr.length)[0];
     }
 
+    public static <T, R> Map<T, R> pick(Map<T, R> obj, T[] arr) {
+        return Arrays.stream(arr)
+                .filter(obj::containsKey)
+                .collect(Collectors.toMap(k -> k , obj::get));
+    }
+
 }

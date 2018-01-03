@@ -3,6 +3,7 @@ package snippets;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
@@ -316,5 +317,16 @@ public class SnippetsTests {
     public void nthElement_return_nth_element_from_end_when_n_is_less_than_0() throws Exception {
         String nthElement = Snippets.nthElement(new String[]{"a", "b", "c"}, -3);
         assertThat(nthElement).isEqualTo("a");
+    }
+
+    @Test
+    public void pick_should_pick_key_pairs_corresponding_to_keys() throws Exception {
+        Map<String, Integer> obj = new HashMap<>();
+        obj.put("a", 1);
+        obj.put("b", 2);
+        obj.put("c", 3);
+
+        Map<String, Integer> picked = Snippets.pick(obj, new String[]{"a", "c"});
+        assertThat(picked).containsExactly(new SimpleEntry<>("a", 1), new SimpleEntry<>("c", 3));
     }
 }
