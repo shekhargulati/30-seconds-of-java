@@ -255,6 +255,29 @@ public class SnippetsTests {
     public void intersection_between_two_arrays() throws Exception {
         int[] elements = Snippets.intersection(new int[]{1, 2, 3}, new int[]{4, 3, 2});
         assertThat(elements).isEqualTo(new int[]{2, 3});
+    }
 
+    @Test
+    public void isSorted_return_1_when_array_sorted_is_ascending_order() throws Exception {
+        int sorted = Snippets.isSorted(new Integer[]{0, 1, 2, 3});
+        assertThat(sorted).isEqualTo(1);
+
+        sorted = Snippets.isSorted(new Integer[]{0, 1, 2, 2});
+        assertThat(sorted).isEqualTo(1);
+    }
+
+    @Test
+    public void isSorted_return_minus_1_when_array_sorted_in_descending_order() throws Exception {
+        int sorted = Snippets.isSorted(new Integer[]{3, 2, 1, 0});
+        assertThat(sorted).isEqualTo(-1);
+
+        sorted = Snippets.isSorted(new Integer[]{3, 3, 2, 1, 0});
+        assertThat(sorted).isEqualTo(-1);
+    }
+
+    @Test
+    public void isSorted_returns_0_when_array_is_not_sorted() throws Exception {
+        int sorted = Snippets.isSorted(new Integer[]{3, 4, 1, 0});
+        assertThat(sorted).isEqualTo(0);
     }
 }
