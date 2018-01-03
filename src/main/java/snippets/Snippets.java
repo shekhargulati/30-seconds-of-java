@@ -421,7 +421,7 @@ public abstract class Snippets {
                 .orElse(arr.length);
     }
 
-    public static <T> T[] symetricDifference(T[] first, T[] second) {
+    public static <T> T[] symmetricDifference(T[] first, T[] second) {
         Set<T> sA = new HashSet<>(Arrays.asList(first));
         Set<T> sB = new HashSet<>(Arrays.asList(second));
 
@@ -429,5 +429,11 @@ public abstract class Snippets {
                 Arrays.stream(first).filter(a -> !sB.contains(a)),
                 Arrays.stream(second).filter(b -> !sA.contains(b))
         ).toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, first.getClass()));
+    }
+
+    public static <T> T[] tail(T[] arr) {
+        return arr.length > 1
+                ? Arrays.copyOfRange(arr, 1, arr.length)
+                : arr;
     }
 }

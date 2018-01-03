@@ -394,7 +394,7 @@ public class SnippetsTests {
 
     @Test
     public void symmetricDifference_test() throws Exception {
-        Integer[] diff = Snippets.symetricDifference(
+        Integer[] diff = Snippets.symmetricDifference(
                 new Integer[]{1, 2, 3},
                 new Integer[]{1, 2, 4}
         );
