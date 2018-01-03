@@ -3,6 +3,7 @@ package snippets;
 import java.lang.reflect.Array;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public abstract class Snippets {
 
@@ -417,5 +419,15 @@ public abstract class Snippets {
                 .filter(i -> isDescending ? el.compareTo(arr[i]) >= 0 : el.compareTo(arr[i]) <= 0)
                 .findFirst()
                 .orElse(arr.length);
+    }
+
+    public static <T> T[] symetricDifference(T[] first, T[] second) {
+        Set<T> sA = new HashSet<>(Arrays.asList(first));
+        Set<T> sB = new HashSet<>(Arrays.asList(second));
+
+        return Stream.concat(
+                Arrays.stream(first).filter(a -> !sB.contains(a)),
+                Arrays.stream(second).filter(b -> !sA.contains(b))
+        ).toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, first.getClass()));
     }
 }

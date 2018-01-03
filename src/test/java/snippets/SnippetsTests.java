@@ -391,4 +391,13 @@ public class SnippetsTests {
         int index = Snippets.sortedIndex(new Integer[]{30, 50}, 60);
         assertThat(index).isEqualTo(2);
     }
+
+    @Test
+    public void symmetricDifference_test() throws Exception {
+        Integer[] diff = Snippets.symetricDifference(
+                new Integer[]{1, 2, 3},
+                new Integer[]{1, 2, 4}
+        );
+        assertThat(diff).isEqualTo(new Integer[]{3, 4});
+    }
 }
