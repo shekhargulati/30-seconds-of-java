@@ -436,4 +436,8 @@ public abstract class Snippets {
                 ? Arrays.copyOfRange(arr, 1, arr.length)
                 : arr;
     }
+
+    public static <T> T[] take(T[] arr, int n) {
+        return Arrays.copyOfRange(arr, 0, n);
+    }
 }
