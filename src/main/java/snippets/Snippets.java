@@ -343,4 +343,12 @@ public abstract class Snippets {
     public static <T> String join(T[] arr) {
         return join(arr, ",");
     }
+
+    public static <T> T nthElement(T[] arr, int n) {
+        if (n > 0) {
+            return Arrays.copyOfRange(arr, n, arr.length)[0];
+        }
+        return Arrays.copyOfRange(arr, arr.length + n, arr.length)[0];
+    }
+
 }

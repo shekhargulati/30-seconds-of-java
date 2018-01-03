@@ -304,4 +304,17 @@ public class SnippetsTests {
         String joined = Snippets.join(new String[]{});
         assertThat(joined).isEqualTo("");
     }
+
+    @Test
+    public void nthElement_return_nth_element_from_start_when_n_is_greater_than_0() throws Exception {
+        String nthElement = Snippets.nthElement(new String[]{"a", "b", "c"}, 1);
+        assertThat(nthElement).isEqualTo("b");
+    }
+
+
+    @Test
+    public void nthElement_return_nth_element_from_end_when_n_is_less_than_0() throws Exception {
+        String nthElement = Snippets.nthElement(new String[]{"a", "b", "c"}, -3);
+        assertThat(nthElement).isEqualTo("a");
+    }
 }
