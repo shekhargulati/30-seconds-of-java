@@ -384,4 +384,17 @@ public abstract class Snippets {
         return Arrays.copyOfRange(arr, 0, n > length ? length : n);
     }
 
+    public static <T> T[] shuffle(T[] input) {
+        T[] arr = Arrays.copyOf(input, input.length);
+        int length = arr.length;
+        int m = length;
+        while (m > 0) {
+            int i = (int) Math.floor(Math.random() * m--);
+            T tmp = arr[i];
+            arr[i] = arr[m];
+            arr[m] = tmp;
+        }
+        return arr;
+    }
+
 }
