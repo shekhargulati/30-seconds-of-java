@@ -447,4 +447,31 @@ public class SnippetsTests {
         assertThat(zipped.get(0)).isEqualTo(new Object[]{"a", 1, true});
         assertThat(zipped.get(1)).isEqualTo(new Object[]{null, 2, false});
     }
+
+    @Test
+    public void zipObject_test_1() throws Exception {
+        Map<String, Object> map = Snippets.zipObject(
+                new String[]{"a", "b", "c"},
+                new Integer[]{1, 2}
+        );
+
+        assertThat(map).containsOnly(
+                new SimpleEntry<>("a", 1),
+                new SimpleEntry<>("b", 2),
+                new SimpleEntry<>("c", null)
+        );
+    }
+
+    @Test
+    public void zipObject_test_2() throws Exception {
+        Map<String, Object> map = Snippets.zipObject(
+                new String[]{"a", "b"},
+                new Integer[]{1, 2, 3}
+        );
+
+        assertThat(map).containsOnly(
+                new SimpleEntry<>("a", 1),
+                new SimpleEntry<>("b", 2)
+        );
+    }
 }

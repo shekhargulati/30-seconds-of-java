@@ -3,6 +3,7 @@ package snippets;
 import java.lang.reflect.Array;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -465,5 +466,12 @@ public abstract class Snippets {
                         .map(arr -> i < arr.length ? arr[i] : null)
                         .toArray())
                 .collect(Collectors.toList());
+    }
+
+    public static Map<String, Object> zipObject(String[] props, Object[] values) {
+        return IntStream.range(0, props.length)
+                .mapToObj(i -> new SimpleEntry<>(props[i], i < values.length ? values[i] : null))
+                .collect(
+                        HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
     }
 }
