@@ -457,4 +457,13 @@ public abstract class Snippets {
                 .filter(el -> !excludeElements.contains(el))
                 .toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, arr.getClass()));
     }
+
+    public static List<Object[]> zip(Object[]... arrays) {
+        OptionalInt max = Arrays.stream(arrays).mapToInt(arr -> arr.length).max();
+        return IntStream.range(0, max.getAsInt())
+                .mapToObj(i -> Arrays.stream(arrays)
+                        .map(arr -> i < arr.length ? arr[i] : null)
+                        .toArray())
+                .collect(Collectors.toList());
+    }
 }

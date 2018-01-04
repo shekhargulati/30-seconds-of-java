@@ -421,4 +421,30 @@ public class SnippetsTests {
 
         assertThat(without).isEqualTo(new Integer[]{3});
     }
+
+    @Test
+    public void zip_test() throws Exception {
+        List<Object[]> zipped = Snippets.zip(
+                new String[]{"a", "b"},
+                new Integer[]{1, 2},
+                new Boolean[]{true, false}
+        );
+
+        assertThat(zipped).hasSize(2);
+        assertThat(zipped.get(0)).isEqualTo(new Object[]{"a", 1, true});
+        assertThat(zipped.get(1)).isEqualTo(new Object[]{"b", 2, false});
+    }
+
+    @Test
+    public void zip_test_2() throws Exception {
+        List<Object[]> zipped = Snippets.zip(
+                new String[]{"a"},
+                new Integer[]{1, 2},
+                new Boolean[]{true, false}
+        );
+
+        assertThat(zipped).hasSize(2);
+        assertThat(zipped.get(0)).isEqualTo(new Object[]{"a", 1, true});
+        assertThat(zipped.get(1)).isEqualTo(new Object[]{null, 2, false});
+    }
 }
