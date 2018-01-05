@@ -15,6 +15,7 @@ import java.util.function.IntBinaryOperator;
 import java.util.function.IntFunction;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -479,5 +480,18 @@ public abstract class Snippets {
         return IntStream.of(arr)
                 .average()
                 .orElseThrow(() -> new IllegalArgumentException("Array is empty"));
+    }
+
+    public static String capitalize(String input, boolean lowerRest) {
+        return input.substring(0, 1).toUpperCase() +
+                (lowerRest
+                        ? input.substring(1, input.length()).toLowerCase()
+                        : input.substring(1, input.length()));
+    }
+
+    public static String capitalizeEveryWord(final String input) {
+        return Pattern.compile("\\b(?=\\w)").splitAsStream(input)
+                .map(w -> capitalize(w, false))
+                .collect(Collectors.joining());
     }
 }

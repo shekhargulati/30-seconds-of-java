@@ -481,4 +481,15 @@ public class SnippetsTests {
         double average = Snippets.average(IntStream.rangeClosed(1, 10).toArray());
         assertThat(average).isEqualTo(5.5);
     }
+
+    @Test
+    public void capitalize_test() throws Exception {
+        assertThat(Snippets.capitalize("fooBar", false)).isEqualTo("FooBar");
+        assertThat(Snippets.capitalize("fooBar", true)).isEqualTo("Foobar");
+    }
+
+    @Test
+    public void capitalizeEveryWord_test() throws Exception {
+        assertThat(Snippets.capitalizeEveryWord("hello world!")).isEqualTo("Hello World!");
+    }
 }
