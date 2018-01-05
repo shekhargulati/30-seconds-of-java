@@ -474,4 +474,10 @@ public abstract class Snippets {
                 .collect(
                         HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
     }
+
+    public static double average(int[] arr) {
+        return IntStream.of(arr)
+                .average()
+                .orElseThrow(() -> new IllegalArgumentException("Array is empty"));
+    }
 }

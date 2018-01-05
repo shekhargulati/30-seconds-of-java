@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 import org.junit.Test;
 
@@ -473,5 +474,11 @@ public class SnippetsTests {
                 new SimpleEntry<>("a", 1),
                 new SimpleEntry<>("b", 2)
         );
+    }
+
+    @Test
+    public void average_of_1_to_10_is_5_dot_5() throws Exception {
+        double average = Snippets.average(IntStream.rangeClosed(1, 10).toArray());
+        assertThat(average).isEqualTo(5.5);
     }
 }
