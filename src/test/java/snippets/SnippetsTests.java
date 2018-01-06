@@ -510,4 +510,9 @@ public class SnippetsTests {
     public void byteSize_of_hello_world_is_11() throws Exception {
         assertThat(Snippets.byteSize("Hello World")).isEqualTo(11);
     }
+
+    @Test
+    public void countVowels_test() throws Exception {
+        assertThat(Snippets.countVowels("foobar")).isEqualTo(3);
+    }
 }

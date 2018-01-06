@@ -483,19 +483,6 @@ public abstract class Snippets {
                 .orElseThrow(() -> new IllegalArgumentException("Array is empty"));
     }
 
-    public static String capitalize(String input, boolean lowerRest) {
-        return input.substring(0, 1).toUpperCase() +
-                (lowerRest
-                        ? input.substring(1, input.length()).toLowerCase()
-                        : input.substring(1, input.length()));
-    }
-
-    public static String capitalizeEveryWord(final String input) {
-        return Pattern.compile("\\b(?=\\w)").splitAsStream(input)
-                .map(w -> capitalize(w, false))
-                .collect(Collectors.joining());
-    }
-
     public static List<String> anagrams(String input) {
         if (input.length() <= 2) {
             return input.length() == 2
@@ -515,6 +502,23 @@ public abstract class Snippets {
         // Read the link below to learn more
         // https://stackoverflow.com/questions/16270994/difference-between-string-length-and-string-getbytes-length
         return input.getBytes().length;
+    }
+
+    public static String capitalize(String input, boolean lowerRest) {
+        return input.substring(0, 1).toUpperCase() +
+                (lowerRest
+                        ? input.substring(1, input.length()).toLowerCase()
+                        : input.substring(1, input.length()));
+    }
+
+    public static String capitalizeEveryWord(final String input) {
+        return Pattern.compile("\\b(?=\\w)").splitAsStream(input)
+                .map(w -> capitalize(w, false))
+                .collect(Collectors.joining());
+    }
+
+    public static int countVowels(String input) {
+        return input.replaceAll("[^aeiouAEIOU]", "").length();
     }
 
 
