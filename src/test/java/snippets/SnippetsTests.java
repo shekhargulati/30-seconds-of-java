@@ -499,4 +499,15 @@ public class SnippetsTests {
         assertThat(anagrams)
                 .containsOnly("abc", "acb", "bac", "bca", "cab", "cba");
     }
+
+    @Test
+    public void byteSize_of_smiley_is_4() throws Exception {
+        int length = Snippets.byteSize("\uD83D\uDE00");
+        assertThat(length).isEqualTo(4);
+    }
+
+    @Test
+    public void byteSize_of_hello_world_is_11() throws Exception {
+        assertThat(Snippets.byteSize("Hello World")).isEqualTo(11);
+    }
 }

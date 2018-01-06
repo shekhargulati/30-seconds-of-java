@@ -509,6 +509,13 @@ public abstract class Snippets {
                                 .stream()
                                 .map(s -> entry.getValue() + s))
                 .collect(Collectors.toList());
-
     }
+
+    public static int byteSize(String input) {
+        // Read the link below to learn more
+        // https://stackoverflow.com/questions/16270994/difference-between-string-length-and-string-getbytes-length
+        return input.getBytes().length;
+    }
+
+
 }
