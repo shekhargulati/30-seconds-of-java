@@ -515,4 +515,9 @@ public class SnippetsTests {
     public void countVowels_test() throws Exception {
         assertThat(Snippets.countVowels("foobar")).isEqualTo(3);
     }
+
+    @Test
+    public void escapeRegex_test() throws Exception {
+        assertThat(Snippets.escapeRegExp("(test)")).isEqualTo("\\Q(test)\\E");
+    }
 }

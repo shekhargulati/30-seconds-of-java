@@ -521,5 +521,8 @@ public abstract class Snippets {
         return input.replaceAll("[^aeiouAEIOU]", "").length();
     }
 
+    public static String escapeRegExp(String input){
+        return Pattern.quote(input);
+    }
 
 }
