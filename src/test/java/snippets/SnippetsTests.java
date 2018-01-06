@@ -492,4 +492,11 @@ public class SnippetsTests {
     public void capitalizeEveryWord_test() throws Exception {
         assertThat(Snippets.capitalizeEveryWord("hello world!")).isEqualTo("Hello World!");
     }
+
+    @Test
+    public void anagrams_test() throws Exception {
+        List<String> anagrams = Snippets.anagrams("abc");
+        assertThat(anagrams)
+                .containsOnly("abc", "acb", "bac", "bca", "cab", "cba");
+    }
 }

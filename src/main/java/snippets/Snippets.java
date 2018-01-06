@@ -2,7 +2,9 @@ package snippets;
 
 import java.lang.reflect.Array;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -493,5 +495,23 @@ public abstract class Snippets {
         return Pattern.compile("\\b(?=\\w)").splitAsStream(input)
                 .map(w -> capitalize(w, false))
                 .collect(Collectors.joining());
+    }
+
+    public static List<String> anagrams(String input) {
+        if (input.length() <= 2) {
+            return input.length() == 2
+                    ? Arrays.asList(input, input.substring(1) + input.substring(0, 1))
+                    : Collections.singletonList(input);
+        }
+        List<String> anagrams = new ArrayList<>();
+        for (int i = 0; i < input.length(); i++) {
+            String letter = input.substring(i, i + 1);
+            anagrams.addAll(
+                    anagrams(input.substring(0, i) + input.substring(i + 1))
+                            .stream()
+                            .map(s -> letter + s)
+                            .collect(Collectors.toList()));
+        }
+        return anagrams;
     }
 }
