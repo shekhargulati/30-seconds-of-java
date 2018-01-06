@@ -2,7 +2,6 @@ package snippets;
 
 import java.lang.reflect.Array;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -503,15 +502,13 @@ public abstract class Snippets {
                     ? Arrays.asList(input, input.substring(1) + input.substring(0, 1))
                     : Collections.singletonList(input);
         }
-        List<String> anagrams = new ArrayList<>();
-        for (int i = 0; i < input.length(); i++) {
-            String letter = input.substring(i, i + 1);
-            anagrams.addAll(
-                    anagrams(input.substring(0, i) + input.substring(i + 1))
-                            .stream()
-                            .map(s -> letter + s)
-                            .collect(Collectors.toList()));
-        }
-        return anagrams;
+        return IntStream.range(0, input.length())
+                .mapToObj(i -> new SimpleEntry<>(i, input.substring(i, i + 1)))
+                .flatMap(entry ->
+                        anagrams(input.substring(0, entry.getKey()) + input.substring(entry.getKey() + 1))
+                                .stream()
+                                .map(s -> entry.getValue() + s))
+                .collect(Collectors.toList());
+
     }
 }
