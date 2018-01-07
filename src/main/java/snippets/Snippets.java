@@ -530,4 +530,8 @@ public abstract class Snippets {
                 .replaceAll("([a-z\\d])([A-Z])", "$1" + separator + "$2")
                 .toLowerCase();
     }
+
+    public static boolean isAbsoluteUrl(String url) {
+        return Pattern.compile("^[a-z][a-z0-9+.-]*:").matcher(url).find();
+    }
 }

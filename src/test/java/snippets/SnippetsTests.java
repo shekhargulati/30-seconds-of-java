@@ -530,4 +530,11 @@ public class SnippetsTests {
         assertThat(Snippets.fromCamelCase("someLabelThatNeedsToBeCamelized", "-"))
                 .isEqualTo("some-label-that-needs-to-be-camelized");
     }
+
+    @Test
+    public void isAbsoluteUrl_test() throws Exception {
+        assertThat(Snippets.isAbsoluteUrl("https://google.com")).isTrue();
+        assertThat(Snippets.isAbsoluteUrl("ftp://www.myserver.net")).isTrue();
+        assertThat(Snippets.isAbsoluteUrl("/foo/bar")).isFalse();
+    }
 }
