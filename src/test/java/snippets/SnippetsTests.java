@@ -609,4 +609,10 @@ public class SnippetsTests {
     public void truncateString_test() throws Exception {
         assertThat(Snippets.truncateString("boomerang", 7)).isEqualTo("boom...");
     }
+
+    @Test
+    public void words_test() throws Exception {
+        assertThat(Snippets.words("I love java!!")).isEqualTo(new String[]{"I", "love", "java"});
+        assertThat(Snippets.words("Kotlin, Java & LemonTea")).isEqualTo(new String[]{"Kotlin", "Java", "LemonTea"});
+    }
 }

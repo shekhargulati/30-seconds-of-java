@@ -624,4 +624,10 @@ public abstract class Snippets {
                 ? input.substring(0, num > 3 ? num - 3 : num) + "..."
                 : input;
     }
+
+    public static String[] words(String input){
+        return Arrays.stream(input.split("[^a-zA-Z-]+"))
+                .filter(s -> !s.isEmpty())
+                .toArray(String[]::new);
+    }
 }
