@@ -595,4 +595,14 @@ public class SnippetsTests {
         assertThat(Snippets.toKebabCase("AllThe-small Things")).isEqualTo("all-the-small-things");
         assertThat(Snippets.toKebabCase("IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingXMLAndHTML")).isEqualTo("i-am-listening-to-fm-while-loading-different-url-on-my-browser-and-also-editing-xml-and-html");
     }
+
+    @Test
+    public void toSnakeCase_test() throws Exception {
+        assertThat(Snippets.toSnakeCase("camelCase")).isEqualTo("camel_case");
+        assertThat(Snippets.toSnakeCase("some text")).isEqualTo("some_text");
+        assertThat(Snippets.toSnakeCase("some-mixed_string With spaces_underscores-and-hyphens")).isEqualTo("some_mixed_string_with_spaces_underscores_and_hyphens");
+        assertThat(Snippets.toSnakeCase("AllThe-small Things")).isEqualTo("all_the_small_things");
+        assertThat(Snippets.toSnakeCase("IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingXMLAndHTML")).isEqualTo("i_am_listening_to_fm_while_loading_different_url_on_my_browser_and_also_editing_xml_and_html");
+    }
+
 }

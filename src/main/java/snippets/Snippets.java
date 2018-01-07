@@ -607,4 +607,15 @@ public abstract class Snippets {
         }
         return matchedParts;
     }
+
+    public static String toSnakeCase(String input) {
+        Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
+        List<String> matchedParts = new ArrayList<>();
+        while (matcher.find()) {
+            matchedParts.add(matcher.group(0));
+        }
+        return matchedParts.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.joining("_"));
+    }
 }
