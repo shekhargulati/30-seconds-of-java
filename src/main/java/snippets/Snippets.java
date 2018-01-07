@@ -554,4 +554,12 @@ public abstract class Snippets {
                         + input.substring(Math.negateExact(num), length).replaceAll(".", mask);
     }
 
+    public static boolean isPalindrome(String input) {
+        String s = input.toLowerCase().replaceAll("[\\W_]", "");
+        return Objects.equals(
+                s,
+                new StringBuilder(s).reverse().toString()
+        );
+    }
+
 }

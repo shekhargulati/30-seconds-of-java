@@ -551,4 +551,10 @@ public class SnippetsTests {
         assertThat(Snippets.mask("1234567890", 3, "*")).isEqualTo("*******890");
         assertThat(Snippets.mask("1234567890", -4, "*")).isEqualTo("1234******");
     }
+
+    @Test
+    public void palindrome_test() throws Exception {
+        assertThat(Snippets.isPalindrome("taco cat")).isTrue();
+        assertThat(Snippets.isPalindrome("abc")).isFalse();
+    }
 }
