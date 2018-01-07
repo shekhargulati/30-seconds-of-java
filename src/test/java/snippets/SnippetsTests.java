@@ -586,4 +586,13 @@ public class SnippetsTests {
         assertThat(Snippets.toCamelCase("some-java-property")).isEqualTo("someJavaProperty");
         assertThat(Snippets.toCamelCase("some-mixed_string with spaces_underscores-and-hyphens")).isEqualTo("someMixedStringWithSpacesUnderscoresAndHyphens");
     }
+
+    @Test
+    public void toKebabCase_test() throws Exception {
+        assertThat(Snippets.toKebabCase("camelCase")).isEqualTo("camel-case");
+        assertThat(Snippets.toKebabCase("some text")).isEqualTo("some-text");
+        assertThat(Snippets.toKebabCase("some-mixed_string With spaces_underscores-and-hyphens")).isEqualTo("some-mixed-string-with-spaces-underscores-and-hyphens");
+        assertThat(Snippets.toKebabCase("AllThe-small Things")).isEqualTo("all-the-small-things");
+        assertThat(Snippets.toKebabCase("IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingXMLAndHTML")).isEqualTo("i-am-listening-to-fm-while-loading-different-url-on-my-browser-and-also-editing-xml-and-html");
+    }
 }

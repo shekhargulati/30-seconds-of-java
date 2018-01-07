@@ -578,13 +578,33 @@ public abstract class Snippets {
 
     public static String toCamelCase(String input) {
         Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
-        List<String> matchResult = new ArrayList<>();
-        while(matcher.find()){
-            matchResult.add(matcher.group(0));
+        List<String> matchedParts = new ArrayList<>();
+        while (matcher.find()) {
+            matchedParts.add(matcher.group(0));
         }
-        String s = matchResult.stream()
+        String s = matchedParts.stream()
                 .map(x -> x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase())
                 .collect(Collectors.joining());
         return s.substring(0, 1).toLowerCase() + s.substring(1);
+    }
+
+    public static String toKebabCase(String input) {
+        Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
+        List<String> matchedParts = new ArrayList<>();
+        while (matcher.find()) {
+            matchedParts.add(matcher.group(0));
+        }
+        return matchedParts.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.joining("-"));
+    }
+
+    public static List<String> match(String input, String regex) {
+        Matcher matcher = Pattern.compile(regex).matcher(input);
+        List<String> matchedParts = new ArrayList<>();
+        while (matcher.find()) {
+            matchedParts.add(matcher.group(0));
+        }
+        return matchedParts;
     }
 }
