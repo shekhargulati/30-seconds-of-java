@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntFunction;
@@ -645,5 +646,9 @@ public abstract class Snippets {
             result.write(buffer, 0, length);
         }
         return result.toString(StandardCharsets.UTF_8.name());
+    }
+
+    public static int[] randomInts(int total, int start, int end) {
+        return ThreadLocalRandom.current().ints(total, start, end).toArray();
     }
 }
