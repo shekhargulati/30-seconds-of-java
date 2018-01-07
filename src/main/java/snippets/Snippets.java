@@ -697,4 +697,8 @@ public abstract class Snippets {
     public static boolean isPowerOfTwo(final int value) {
         return value > 0 && ((value & (~value + 1)) == value);
     }
+
+    public static int generateRandomInt() {
+        return ThreadLocalRandom.current().nextInt();
+    }
 }

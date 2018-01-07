@@ -60,6 +60,7 @@
 * [`findNextPositivePowerOfTwo`](#findnextpositivepoweroftwo)
 * [`isEven`](#iseven)
 * [`isPowerOfTwo`](#ispoweroftwo)
+* [`generateRandomInt`](#generaterandomint)
 
 </details>
 
@@ -776,6 +777,16 @@ This will value the expression to true as value is equal to value.
 ```Java
 public static boolean isPowerOfTwo(final int value) {
     return value > 0 && ((value & (~value + 1)) == value);
+}
+```
+
+### generateRandomInt
+
+Generate a random integer between `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.
+
+```java
+public static int generateRandomInt() {
+    return ThreadLocalRandom.current().nextInt();
 }
 ```
 
