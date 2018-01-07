@@ -677,4 +677,17 @@ public abstract class Snippets {
     public static String getCurrentWorkingDirectoryPath() {
         return FileSystems.getDefault().getPath("").toAbsolutePath().toString();
     }
+
+    public static boolean isNumeric(final String cs) {
+        if (cs == null || cs.isEmpty()) {
+            return false;
+        }
+        final int length = cs.length();
+        for (int i = 0; i < length; i++) {
+            if (!Character.isDigit(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
