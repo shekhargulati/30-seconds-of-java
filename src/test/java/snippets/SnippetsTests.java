@@ -520,4 +520,14 @@ public class SnippetsTests {
     public void escapeRegex_test() throws Exception {
         assertThat(Snippets.escapeRegExp("(test)")).isEqualTo("\\Q(test)\\E");
     }
+
+    @Test
+    public void fromCamelCase_test() throws Exception {
+        assertThat(Snippets.fromCamelCase("someJavaProperty", "_"))
+                .isEqualTo("some_java_property");
+        assertThat(Snippets.fromCamelCase("someDatabaseFieldName", " "))
+                .isEqualTo("some database field name");
+        assertThat(Snippets.fromCamelCase("someLabelThatNeedsToBeCamelized", "-"))
+                .isEqualTo("some-label-that-needs-to-be-camelized");
+    }
 }

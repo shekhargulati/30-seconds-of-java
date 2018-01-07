@@ -521,8 +521,13 @@ public abstract class Snippets {
         return input.replaceAll("[^aeiouAEIOU]", "").length();
     }
 
-    public static String escapeRegExp(String input){
+    public static String escapeRegExp(String input) {
         return Pattern.quote(input);
     }
 
+    public static String fromCamelCase(String input, String separator) {
+        return input
+                .replaceAll("([a-z\\d])([A-Z])", "$1" + separator + "$2")
+                .toLowerCase();
+    }
 }
