@@ -1159,6 +1159,20 @@ public static String osName() {
 }
 ```
 
+### isDebuggerEnabled
+
+Checks if debugger is attached to the JVM.
+
+```java
+public static boolean isDebuggerAttached() {
+    final RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+    return runtimeMXBean.getInputArguments()
+            .stream()
+            .anyMatch(arg -> arg.contains("-agentlib:jdwp"));
+
+}
+```
+
 ## Thanks
 
 This project started as a Java fork of [30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code). Thanks to the project collaborators for the effort.

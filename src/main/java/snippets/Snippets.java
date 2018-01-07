@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
@@ -714,5 +716,13 @@ public abstract class Snippets {
 
     public static String osName() {
         return System.getProperty("os.name").toLowerCase();
+    }
+
+    public static boolean isDebuggerAttached() {
+        final RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+        return runtimeMXBean.getInputArguments()
+                .stream()
+                .anyMatch(arg -> arg.contains("-agentlib:jdwp"));
+
     }
 }
