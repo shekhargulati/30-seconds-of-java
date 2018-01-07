@@ -1,6 +1,6 @@
 # little-java-functions
 
-> Curated collection of useful little Java functions that you can understand quickly.
+> Curated collection of useful little Java 8 functions that you can understand quickly.
 
 ## Table of Contents
 
@@ -402,6 +402,10 @@ public static int[] intersection(int[] first, int[] second) {
 
 ### isSorted
 
+Returns `1` if the array is sorted in ascending order, `-1` if it is sorted in descending order or `0` if it is not sorted.
+
+Calculate the ordering `direction` for the first two elements.Use for loop to iterate over array items and compare them in pairs. Return `0` if the `direction` changes or the `direction` if the last element is reached.
+
 ```java
 public static <T extends Comparable<? super T>> int isSorted(T[] arr) {
     final int direction = arr[0].compareTo(arr[1]) < 0 ? 1 : -1;
@@ -416,6 +420,10 @@ public static <T extends Comparable<? super T>> int isSorted(T[] arr) {
 
 ### join
 
+Joins all elements of an array into a string and returns this string. Uses a separator and an end separator.
+
+Use IntStream.range to zip index with the array item. Then, use `Stream.reduce`  to combine elements into a string. 
+
 ```java
 public static <T> String join(T[] arr, String separator, String end) {
     return IntStream.range(0, arr.length)
@@ -428,6 +436,10 @@ public static <T> String join(T[] arr, String separator, String end) {
 
 ### nthElement
 
+Returns the nth element of an array.
+
+Use `Arrays.copyOfRange()` to get an array containing the nth element at the first place. 
+
 ```Java
 public static <T> T nthElement(T[] arr, int n) {
     if (n > 0) {
@@ -439,6 +451,10 @@ public static <T> T nthElement(T[] arr, int n) {
 
 ### pick
 
+Picks the key-value pairs corresponding to the given keys from an object.
+
+Use `Array.stream` to filter all the keys that are present in the `arr`. Then, convert all the keys present into a Map using `Collectors.toMap`.
+
 ```java
 public static <T, R> Map<T, R> pick(Map<T, R> obj, T[] arr) {
     return Arrays.stream(arr)
@@ -448,6 +464,10 @@ public static <T, R> Map<T, R> pick(Map<T, R> obj, T[] arr) {
 ```
 
 ### reducedFilter
+
+Filter an array of objects based on a condition while also filtering out unspecified keys.
+
+Use `Arrays.stream().filter()` to filter the array based on the predicate `fn` so that it returns the objects for which the condition is true. For each filtered Map object, create a new Map with keys present in the `keys`. Finally, collect all the Map object into an array.
 
 ```java
 public static Map<String, Object>[] reducedFilter(Map<String, Object>[] data, String[] keys, Predicate<Map<String, Object>> fn) {
@@ -461,6 +481,10 @@ public static Map<String, Object>[] reducedFilter(Map<String, Object>[] data, St
 
 ### sample
 
+Returns a random element from an array.
+
+Use `Math.random()` to generate a random number, multiply it by `length` and round it of to the nearest whole number using `Math.floor()`. This method also works with strings.
+
 ```java
 public static <T> T sample(T[] arr) {
     return arr[(int) Math.floor(Math.random() * arr.length)];
@@ -468,6 +492,10 @@ public static <T> T sample(T[] arr) {
 ```
 
 ### sampleSize
+
+Gets `n` random elements at unique keys from `array` up to the size of `array`.
+
+Shuffle the array using the [Fisher-Yates algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). Use `Array.copyOfRange()` to get the first `n` elements.
 
 ```java
 public static <T> T[] sampleSize(T[] input, int n) {
@@ -486,6 +514,10 @@ public static <T> T[] sampleSize(T[] input, int n) {
 
 ### shuffle
 
+Randomizes the order of the values of an array, returning a new array.
+
+Uses the [Fisher-Yates algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) to reorder the elements of the array.
+
 ```java
 public static <T> T[] shuffle(T[] input) {
     T[] arr = Arrays.copyOf(input, input.length);
@@ -503,6 +535,10 @@ public static <T> T[] shuffle(T[] input) {
 
 ### similarity
 
+Returns an array of elements that appear in both arrays.
+
+Use `Arrays.stream().filter()` to remove values that are not part of `second`, determined using `Arrays.stream().anyMatch()`.
+
 ```java
 public static <T> T[] similarity(T[] first, T[] second) {
     return Arrays.stream(first)
@@ -513,6 +549,10 @@ public static <T> T[] similarity(T[] first, T[] second) {
 ```
 
 ### sortedIndex
+
+Returns the lowest index at which value should be inserted into array in order to maintain its sort order.
+
+Check if the array is sorted in descending order (loosely). Use `IntStream.range().filter()` to find the appropriate index where the element should be inserted.
 
 ```java
 public static <T extends Comparable<? super T>> int sortedIndex(T[] arr, T el) {
@@ -525,6 +565,10 @@ public static <T extends Comparable<? super T>> int sortedIndex(T[] arr, T el) {
 ```
 
 ### symmetricDifference
+
+Returns the symmetric difference between two arrays.
+
+Create a `Set` from each array, then use `Array.stream().filter()` on each of them to only keep values not contained in the other. Finally, concatenate both arrays and create a new array and return it.
 
 ```java
 public static <T> T[] symmetricDifference(T[] first, T[] second) {
@@ -540,6 +584,10 @@ public static <T> T[] symmetricDifference(T[] first, T[] second) {
 
 ### tail
 
+Returns all elements in an array except for the first one.
+
+Return `Arrays.copyOfRange(1)` if the array's `length` is more than `1`, otherwise, return the whole array.
+
 ```java
 public static <T> T[] tail(T[] arr) {
     return arr.length > 1
@@ -550,6 +598,8 @@ public static <T> T[] tail(T[] arr) {
 
 ### take
 
+Returns an array with n elements removed from the beginning.
+
 ```java
 public static <T> T[] take(T[] arr, int n) {
     return Arrays.copyOfRange(arr, 0, n);
@@ -558,6 +608,10 @@ public static <T> T[] take(T[] arr, int n) {
 
 ### takeRight
 
+Returns an array with n elements removed from the end.
+
+Use `Arrays.copyOfRange()` to create a slice of the array with `n` elements taken from the end.
+
 ```java
 public static <T> T[] takeRight(T[] arr, int n) {
     return Arrays.copyOfRange(arr, arr.length - n, arr.length);
@@ -565,6 +619,10 @@ public static <T> T[] takeRight(T[] arr, int n) {
 ```
 
 ### union
+
+Returns every element that exists in any of the two arrays once.
+
+Create a `Set` with all values of `a` and `b` and convert to an array.
 
 ```Java
 public static <T> T[] union(T[] first, T[] second) {
@@ -576,6 +634,10 @@ public static <T> T[] union(T[] first, T[] second) {
 
 ### without
 
+Filters out the elements of an array, that have one of the specified values.
+
+Use `Arrays.strean().filter()` to create an array excluding(using `!Arrays.asList(elements).contains()`) all given values.
+
 ```java
 public static <T> T[] without(T[] arr, T... elements) {
     List<T> excludeElements = Arrays.asList(elements);
@@ -586,6 +648,8 @@ public static <T> T[] without(T[] arr, T... elements) {
 ```
 
 ### zip
+
+Creates an array of elements, grouped based on the position in the original arrays.
 
 ```java
 public static List<Object[]> zip(Object[]... arrays) {
@@ -600,6 +664,8 @@ public static List<Object[]> zip(Object[]... arrays) {
 
 ### zipObject
 
+Given an array of valid property identifiers and an array of values, return an object associating the properties to the values.
+
 ```java
 public static Map<String, Object> zipObject(String[] props, Object[] values) {
     return IntStream.range(0, props.length)
@@ -612,6 +678,8 @@ public static Map<String, Object> zipObject(String[] props, Object[] values) {
 ## Maths
 
 ### average
+
+Returns the average of an of two or more numbers.
 
 ```java
 public static double average(int[] arr) {
@@ -666,6 +734,8 @@ private static int gcd(int a, int b) {
 
 ### anagrams
 
+Generates all anagrams of a string (contains duplicates).
+
 ```java
 public static List<String> anagrams(String input) {
     if (input.length() <= 2) {
@@ -685,6 +755,8 @@ public static List<String> anagrams(String input) {
 
 ### byteSize
 
+Returns the length of a string in bytes.
+
 ```java
 public static int byteSize(String input) {
     return input.getBytes().length;
@@ -692,6 +764,8 @@ public static int byteSize(String input) {
 ```
 
 ### capitalize
+
+Capitalizes the first letter of a string.
 
 ```Java
 public static String capitalize(String input, boolean lowerRest) {
@@ -704,6 +778,8 @@ public static String capitalize(String input, boolean lowerRest) {
 
 ### capitalizeEveryWord
 
+Capitalizes the first letter of every word in a string.
+
 ```java
 public static String capitalizeEveryWord(final String input) {
     return Pattern.compile("\\b(?=\\w)").splitAsStream(input)
@@ -714,6 +790,8 @@ public static String capitalizeEveryWord(final String input) {
 
 ### countVowels
 
+Retuns `number` of vowels in provided string.
+
 ```java
 public static int countVowels(String input) {
     return input.replaceAll("[^aeiouAEIOU]", "").length();
@@ -722,6 +800,8 @@ public static int countVowels(String input) {
 
 ### escapeRegExp
 
+Escapes a string to use in a regular expression.
+
 ```java
 public static String escapeRegExp(String input) {
     return Pattern.quote(input);
@@ -729,6 +809,8 @@ public static String escapeRegExp(String input) {
 ```
 
 ### fromCamelCase
+
+Converts a string from camelcase.
 
 ```java
 public static String fromCamelCase(String input, String separator) {
@@ -740,6 +822,8 @@ public static String fromCamelCase(String input, String separator) {
 
 ### isAbsoluteUrl
 
+Returns `true` if the given string is an absolute URL, `false` otherwise.
+
 ```java
 public static boolean isAbsoluteUrl(String url) {
     return Pattern.compile("^[a-z][a-z0-9+.-]*:").matcher(url).find();
@@ -747,6 +831,8 @@ public static boolean isAbsoluteUrl(String url) {
 ```
 
 ### isLowerCase
+
+Checks if a string is lower case.
 
 ```java
 public static boolean isLowerCase(String input) {
@@ -756,6 +842,8 @@ public static boolean isLowerCase(String input) {
 
 ### isUpperCase
 
+Checks if a string is upper case.
+
 ```java
 public static boolean isUpperCase(String input) {
     return Objects.equals(input, input.toUpperCase());
@@ -763,6 +851,8 @@ public static boolean isUpperCase(String input) {
 ```
 
 ### isPalindrome
+
+Checks if a string is palindrome.
 
 ```java
 public static boolean isPalindrome(String input) {
@@ -776,6 +866,8 @@ public static boolean isPalindrome(String input) {
 
 ### isNumeric
 
+Checks if a string is numeric.
+
 ```java
 public static boolean isNumeric(final String input) {
     return IntStream.range(0, input.length())
@@ -784,6 +876,8 @@ public static boolean isNumeric(final String input) {
 ```
 
 ### mask
+
+Replaces all but the last `num` of characters with the specified mask character.
 
 ```Java
 public static String mask(String input, int num, String mask) {
@@ -800,6 +894,8 @@ public static String mask(String input, int num, String mask) {
 
 ### reverseString
 
+Reverses a string.
+
 ```java
 public static String reverseString(String input) {
     return new StringBuilder(input).reverse().toString();
@@ -807,6 +903,8 @@ public static String reverseString(String input) {
 ```
 
 ### sortCharactersInString
+
+Alphabetically sorts the characters in a string.
 
 ```java
 public static String sortCharactersInString(String input) {
@@ -816,6 +914,8 @@ public static String sortCharactersInString(String input) {
 
  ### splitLines
 
+Splits a multiline string into an array of lines.
+
 ```java
 public static String[] splitLines(String input) {
     return input.split("\\r?\\n");
@@ -823,6 +923,8 @@ public static String[] splitLines(String input) {
 ```
 
 ### toCamelCase
+
+Converts a string to camelcase.
 
 ```java
 public static String toCamelCase(String input) {
@@ -841,6 +943,8 @@ public static String toCamelCase(String input) {
 
 ### toKebabCase
 
+Converts a string to kebab case.
+
 ```java
 public static String toKebabCase(String input) {
     Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
@@ -853,8 +957,6 @@ public static String toKebabCase(String input) {
             .collect(Collectors.joining("-"));
 }
 ```
-
-
 
 ### match
 
@@ -872,6 +974,8 @@ public static List<String> match(String input, String regex) {
 
 ### toSnakeCase
 
+Converts a string to snake case.
+
 ```java
 public static String toSnakeCase(String input) {
     Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
@@ -887,6 +991,8 @@ public static String toSnakeCase(String input) {
 
 ### truncateString
 
+Truncates a string up to a specified length.
+
 ```java
 public static String truncateString(String input, int num) {
     return input.length() > num
@@ -896,6 +1002,8 @@ public static String truncateString(String input, int num) {
 ```
 
 ### words
+
+Converts a given string into an array of words.
 
 ```Java
 public static String[] words(String input) {
@@ -908,6 +1016,8 @@ public static String[] words(String input) {
 ## IO
 
 ### convertInputStreamToString
+
+Converts InputStream to a String.
 
 ```java
 public static String convertInputStreamToString(final InputStream in) throws IOException {
@@ -922,6 +1032,8 @@ public static String convertInputStreamToString(final InputStream in) throws IOE
 ```
 
 ### readFileAsString
+
+Reads content of a file to a String
 
 ```java
 public String readFileAsString(Path path) throws IOException {
@@ -941,6 +1053,8 @@ public static String getCurrentWorkingDirectoryPath() {
 
 ### stackTraceAsString
 
+Converts exception stack trace to a String.
+
 ```java
 public static String stackTraceAsString(final Throwable throwable) {
     final StringWriter sw = new StringWriter();
@@ -950,4 +1064,4 @@ public static String stackTraceAsString(final Throwable throwable) {
 ```
 ## Thanks
 
-This project is inspired by [30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code). The 30-seconds-of-code repository has JavaScript snippets. I am trying to focus on Java.
+This project started as a Java fork of [30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code). Thanks to the project collaborators for the effort.
