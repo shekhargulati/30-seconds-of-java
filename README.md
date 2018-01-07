@@ -57,12 +57,16 @@
 * [`zip`](#zip)
 * [`zipObject`](#zipobject)
 
+</details>
+
 ### Math
 
 <details>
 <summary>View contents</summary>
 
 * [`average`](#average)
+
+</details>
 
 ### String
 
@@ -93,6 +97,8 @@
 * [`unescapeHTML`](#unescapehtml)
 * [`words`](#words)
 
+</details>
+
 ### IO
 
 <details>
@@ -102,12 +108,16 @@
 * [`readFileAsString`](#readFileAsString)
 * [`getCurrentWorkingDirectoryPath`](#getCurrentWorkingDirectoryPath)
 
+</details>
+
 ### Exception
 
 <details>
 <summary>View contents</summary>
 
 * [`stackTraceAsString`](#stackTraceAsString)
+
+</details>
 
 ## Array
 
