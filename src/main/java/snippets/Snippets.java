@@ -41,7 +41,7 @@ public abstract class Snippets {
      * @param numbers Array of numbers
      * @return gcd of array of numbers
      */
-    public static OptionalInt arrayGcd(int[] numbers) {
+    public static OptionalInt gcd(int[] numbers) {
         return Arrays.stream(numbers)
                 .reduce((a, b) -> gcd(a, b));
     }
@@ -52,7 +52,7 @@ public abstract class Snippets {
      * @param numbers Array of numbers
      * @return lcm of array of numbers
      */
-    public static OptionalInt arrayLcm(int[] numbers) {
+    public static OptionalInt lcm(int[] numbers) {
         IntBinaryOperator lcm = (x, y) -> (x * y) / gcd(x, y);
         return Arrays.stream(numbers)
                 .reduce((a, b) -> lcm.applyAsInt(a, b));
