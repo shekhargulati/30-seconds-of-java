@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -650,5 +652,9 @@ public abstract class Snippets {
 
     public static int[] randomInts(int total, int start, int end) {
         return ThreadLocalRandom.current().ints(total, start, end).toArray();
+    }
+
+    public String readFileAsString(Path path) throws IOException {
+        return new String(Files.readAllBytes(path));
     }
 }
