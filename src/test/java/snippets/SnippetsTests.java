@@ -620,4 +620,12 @@ public class SnippetsTests {
     public void randomInts_test() throws Exception {
         System.out.println(Arrays.toString(Snippets.randomInts(5, 100, 200)));
     }
+
+    @Test
+    public void concat_test() throws Exception {
+        String[] first = {"a", "b"};
+        String[] second = {"c", "d"};
+        assertThat(Snippets.concat(first, second))
+                .isEqualTo(new String[]{"a", "b", "c", "d"});
+    }
 }
