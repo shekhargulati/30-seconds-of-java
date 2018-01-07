@@ -537,4 +537,11 @@ public class SnippetsTests {
         assertThat(Snippets.isAbsoluteUrl("ftp://www.myserver.net")).isTrue();
         assertThat(Snippets.isAbsoluteUrl("/foo/bar")).isFalse();
     }
+
+    @Test
+    public void isLowerCase_test() throws Exception {
+        assertThat(Snippets.isLowerCase("abc")).isTrue();
+        assertThat(Snippets.isLowerCase("a3@$")).isTrue();
+        assertThat(Snippets.isLowerCase("Ab4")).isFalse();
+    }
 }

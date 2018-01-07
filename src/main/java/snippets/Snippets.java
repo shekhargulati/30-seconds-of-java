@@ -534,4 +534,13 @@ public abstract class Snippets {
     public static boolean isAbsoluteUrl(String url) {
         return Pattern.compile("^[a-z][a-z0-9+.-]*:").matcher(url).find();
     }
+
+    public static boolean isLowerCase(String input) {
+        return Objects.equals(input, input.toLowerCase());
+    }
+
+    public static boolean isUpperCase(String input) {
+        return Objects.equals(input, input.toUpperCase());
+    }
+
 }
