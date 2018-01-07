@@ -23,7 +23,7 @@
 * [`flattenDepth`](#flattendepth)
 * [`groupBy`](#groupby)
 * [`head`](#head)
-* [`initial`](#initial)	
+* [`initial`](#initial)
 * [`initializeArrayWithRange`](#initializearraywithrange)
 * [`initializeArrayWithValues`](#initializearraywithvalues)
 * [`intersection`](#intersection)
@@ -55,8 +55,6 @@
 <summary>View contents</summary>
 
 * [`average`](#average)
-* [`gcd`](#gcd)
-* [`lcm`](#lcm)
 
 </details>
 
@@ -70,7 +68,6 @@
 * [`capitalize`](#capitalize)
 * [`capitalizeEveryWord`](#capitalizeeveryword)
 * [`countVowels`](#countvowels)
-* [`escapeHTML`](#escapehtml)
 * [`escapeRegExp`](#escaperegexp)
 * [`fromCamelCase`](#fromcamelcase)
 * [`isAbsoluteURL`](#isabsoluteurl)
@@ -86,7 +83,6 @@
 * [`toKebabCase`](#tokebabcase)
 * [`toSnakeCase`](#tosnakecase)
 * [`truncateString`](#truncatestring)
-* [`unescapeHTML`](#unescapehtml)
 * [`words`](#words)
 
 </details>
@@ -97,7 +93,7 @@
 <summary>View contents</summary>
 
 * [`convertInputStreamToString`](#convertinputstreamtostring)
-* [`readFileAsString`](#readFileAsString)
+* [`readFileAsString`](#readfileasstring)
 * [`getCurrentWorkingDirectoryPath`](#getcurrentworkingdirectorypath)
 
 </details>
@@ -894,6 +890,16 @@ public static String truncateString(String input, int num) {
     return input.length() > num
             ? input.substring(0, num > 3 ? num - 3 : num) + "..."
             : input;
+}
+```
+
+### words
+
+```Java
+public static String[] words(String input) {
+    return Arrays.stream(input.split("[^a-zA-Z-]+"))
+            .filter(s -> !s.isEmpty())
+            .toArray(String[]::new);
 }
 ```
 
