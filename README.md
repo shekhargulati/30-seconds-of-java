@@ -8,6 +8,7 @@
 
 <details>
 <summary>View contents</summary>
+
 * [`chunk`](#chunk)
 * [`compact`](#compact)
 * [`countOccurrences`](#countoccurrences)
