@@ -1,6 +1,10 @@
 package snippets;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -625,9 +629,21 @@ public abstract class Snippets {
                 : input;
     }
 
-    public static String[] words(String input){
+    public static String[] words(String input) {
         return Arrays.stream(input.split("[^a-zA-Z-]+"))
                 .filter(s -> !s.isEmpty())
                 .toArray(String[]::new);
+    }
+
+    //Read the link below for more information
+    // https://stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
+    public static String convertInputStreamToString(final InputStream in) throws IOException {
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = in.read(buffer)) != -1) {
+            result.write(buffer, 0, length);
+        }
+        return result.toString(StandardCharsets.UTF_8.name());
     }
 }
