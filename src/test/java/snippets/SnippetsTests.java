@@ -618,7 +618,7 @@ public class SnippetsTests {
 
     @Test
     public void randomInts_test() throws Exception {
-        System.out.println(Arrays.toString(Snippets.randomInts(5, 100, 200)));
+        assertThat(Snippets.randomInts(5, 100, 200)).hasSize(5);
     }
 
     @Test
@@ -627,5 +627,10 @@ public class SnippetsTests {
         String[] second = {"c", "d"};
         assertThat(Snippets.concat(first, second))
                 .isEqualTo(new String[]{"a", "b", "c", "d"});
+    }
+
+    @Test
+    public void getCurrentWorkingDirectoryPath_test() throws Exception {
+        assertThat(Snippets.getCurrentWorkingDirectoryPath()).isNotBlank();
     }
 }

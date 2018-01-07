@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.AbstractMap.SimpleEntry;
@@ -671,5 +672,9 @@ public abstract class Snippets {
                 Stream.of(first),
                 Stream.of(second)
         ).toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, first.getClass()));
+    }
+
+    public static String getCurrentWorkingDirectoryPath() {
+        return FileSystems.getDefault().getPath("").toAbsolutePath().toString();
     }
 }
