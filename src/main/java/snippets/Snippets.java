@@ -543,4 +543,15 @@ public abstract class Snippets {
         return Objects.equals(input, input.toUpperCase());
     }
 
+    public static String mask(String input, int num, String mask) {
+        int length = input.length();
+        return num > 0
+                ?
+                input.substring(0, length - num).replaceAll(".", mask)
+                        + input.substring(length - num)
+                :
+                input.substring(0, Math.negateExact(num))
+                        + input.substring(Math.negateExact(num), length).replaceAll(".", mask);
+    }
+
 }

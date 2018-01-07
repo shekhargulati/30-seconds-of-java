@@ -544,4 +544,11 @@ public class SnippetsTests {
         assertThat(Snippets.isLowerCase("a3@$")).isTrue();
         assertThat(Snippets.isLowerCase("Ab4")).isFalse();
     }
+
+    @Test
+    public void mask_test() throws Exception {
+        assertThat(Snippets.mask("1234567890", 4, "*")).isEqualTo("******7890");
+        assertThat(Snippets.mask("1234567890", 3, "*")).isEqualTo("*******890");
+        assertThat(Snippets.mask("1234567890", -4, "*")).isEqualTo("1234******");
+    }
 }
