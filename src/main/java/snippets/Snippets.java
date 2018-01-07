@@ -693,4 +693,8 @@ public abstract class Snippets {
     public static boolean isEven(final int value) {
         return (value & 0b1) == 0;
     }
+
+    public static boolean isPowerOfTwo(final int value) {
+        return value > 0 && ((value & (~value + 1)) == value);
+    }
 }

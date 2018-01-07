@@ -757,6 +757,26 @@ public static boolean isEven(final int value) {
 }
 ```
 
+### isPowerOfTwo
+
+Checks if a value is positive power of two.
+
+To understand how it works let's assume we made a call `IsPowerOfTwo(4)`.
+
+As value is greater than 0, so right side of the `&&` operator will be evaluated. 
+
+The result of `(~value + 1)` is equal to value itself. `~100 + 001` => `011 + 001` => `100`. This is equal to value.
+
+The result of `(value & value)` is value. `100` & `100` => `100`.
+
+This will value the expression to true as value is equal to value.
+
+```Java
+public static boolean isPowerOfTwo(final int value) {
+    return value > 0 && ((value & (~value + 1)) == value);
+}
+```
+
 ## String
 
 ### anagrams
