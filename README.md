@@ -120,6 +120,7 @@
 <summary>View contents</summary>
 
 - [`osName`](#osname)
+- [`isDebuggerEnabled`](#isdebuggerenabled)
 
 </details>
 
