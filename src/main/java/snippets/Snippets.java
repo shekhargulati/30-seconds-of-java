@@ -3,6 +3,8 @@ package snippets;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -656,5 +658,11 @@ public abstract class Snippets {
 
     public String readFileAsString(Path path) throws IOException {
         return new String(Files.readAllBytes(path));
+    }
+
+    public static String stackTraceAsString(final Throwable throwable) {
+        final StringWriter sw = new StringWriter();
+        throwable.printStackTrace(new PrintWriter(sw));
+        return sw.toString();
     }
 }
