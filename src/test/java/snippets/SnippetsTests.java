@@ -557,4 +557,9 @@ public class SnippetsTests {
         assertThat(Snippets.isPalindrome("taco cat")).isTrue();
         assertThat(Snippets.isPalindrome("abc")).isFalse();
     }
+
+    @Test
+    public void reverseString_test() throws Exception {
+        assertThat(Snippets.reverseString("foobar")).isEqualTo("raboof");
+    }
 }
