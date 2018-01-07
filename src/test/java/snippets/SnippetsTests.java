@@ -578,4 +578,12 @@ public class SnippetsTests {
                         "string."
                 });
     }
+
+    @Test
+    public void toCamelCase_test() throws Exception {
+        assertThat(Snippets.toCamelCase("some_database_field_name")).isEqualTo("someDatabaseFieldName");
+        assertThat(Snippets.toCamelCase("Some label that needs to be camelized")).isEqualTo("someLabelThatNeedsToBeCamelized");
+        assertThat(Snippets.toCamelCase("some-java-property")).isEqualTo("someJavaProperty");
+        assertThat(Snippets.toCamelCase("some-mixed_string with spaces_underscores-and-hyphens")).isEqualTo("someMixedStringWithSpacesUnderscoresAndHyphens");
+    }
 }

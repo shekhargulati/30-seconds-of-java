@@ -2,6 +2,7 @@ package snippets;
 
 import java.lang.reflect.Array;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.function.IntBinaryOperator;
 import java.util.function.IntFunction;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -574,4 +576,15 @@ public abstract class Snippets {
         return input.split("\\r?\\n");
     }
 
+    public static String toCamelCase(String input) {
+        Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
+        List<String> matchResult = new ArrayList<>();
+        while(matcher.find()){
+            matchResult.add(matcher.group(0));
+        }
+        String s = matchResult.stream()
+                .map(x -> x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase())
+                .collect(Collectors.joining());
+        return s.substring(0, 1).toLowerCase() + s.substring(1);
+    }
 }
