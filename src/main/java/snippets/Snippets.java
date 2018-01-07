@@ -711,4 +711,8 @@ public abstract class Snippets {
 
         return tmpDirName;
     }
+
+    public static String osName() {
+        return System.getProperty("os.name").toLowerCase();
+    }
 }

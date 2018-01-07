@@ -114,6 +114,15 @@
 
 </details>
 
+### System
+
+<details>
+<summary>View contents</summary>
+
+- [`osName`](#osname)
+
+</details>
+
 ## Array
 
 ### chunk
@@ -1138,6 +1147,18 @@ public static String stackTraceAsString(final Throwable throwable) {
     return sw.toString();
 }
 ```
+## System
+
+### osName
+
+Gets the name of the operating system as a lower case String.
+
+```java
+public static String osName() {
+    return System.getProperty("os.name").toLowerCase();
+}
+```
+
 ## Thanks
 
 This project started as a Java fork of [30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code). Thanks to the project collaborators for the effort.
