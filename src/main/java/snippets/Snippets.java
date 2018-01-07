@@ -1,6 +1,7 @@
 package snippets;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -700,5 +701,14 @@ public abstract class Snippets {
 
     public static int generateRandomInt() {
         return ThreadLocalRandom.current().nextInt();
+    }
+
+    public static String tmpDirName() {
+        String tmpDirName = System.getProperty("java.io.tmpdir");
+        if (!tmpDirName.endsWith(File.separator)) {
+            tmpDirName += File.separator;
+        }
+
+        return tmpDirName;
     }
 }

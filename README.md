@@ -101,6 +101,7 @@
 * [`convertInputStreamToString`](#convertinputstreamtostring)
 * [`readFileAsString`](#readfileasstring)
 * [`getCurrentWorkingDirectoryPath`](#getcurrentworkingdirectorypath)
+* [`tmpDirName`](#tmpdirname)
 
 </details>
 
@@ -1106,6 +1107,21 @@ public String readFileAsString(Path path) throws IOException {
 ```java
 public static String getCurrentWorkingDirectoryPath() {
     return FileSystems.getDefault().getPath("").toAbsolutePath().toString();
+}
+```
+
+### tmpDirName
+
+Returns the value of `java.io.tmpdir` system property. It appends separator if not present at the end.
+
+```java
+public static String tmpDirName() {
+    String tmpDirName = System.getProperty("java.io.tmpdir");
+    if (!tmpDirName.endsWith(File.separator)) {
+        tmpDirName += File.separator;
+    }
+
+    return tmpDirName;
 }
 ```
 
