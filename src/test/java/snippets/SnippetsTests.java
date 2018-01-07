@@ -562,4 +562,20 @@ public class SnippetsTests {
     public void reverseString_test() throws Exception {
         assertThat(Snippets.reverseString("foobar")).isEqualTo("raboof");
     }
+
+    @Test
+    public void sortCharactersInString_test() throws Exception {
+        assertThat(Snippets.sortCharactersInString("cabbage")).isEqualTo("aabbceg");
+    }
+
+    @Test
+    public void splitLines_test() throws Exception {
+        assertThat(Snippets.splitLines("This\nis a\nmultiline\nstring.\n"))
+                .isEqualTo(new String[]{
+                        "This",
+                        "is a",
+                        "multiline",
+                        "string."
+                });
+    }
 }

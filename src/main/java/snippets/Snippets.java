@@ -566,4 +566,12 @@ public abstract class Snippets {
         return new StringBuilder(input).reverse().toString();
     }
 
+    public static String sortCharactersInString(String input) {
+        return Arrays.stream(input.split("")).sorted().collect(Collectors.joining());
+    }
+
+    public static String[] splitLines(String input) {
+        return input.split("\\r?\\n");
+    }
+
 }
