@@ -605,4 +605,8 @@ public class SnippetsTests {
         assertThat(Snippets.toSnakeCase("IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingXMLAndHTML")).isEqualTo("i_am_listening_to_fm_while_loading_different_url_on_my_browser_and_also_editing_xml_and_html");
     }
 
+    @Test
+    public void truncateString_test() throws Exception {
+        assertThat(Snippets.truncateString("boomerang", 7)).isEqualTo("boom...");
+    }
 }

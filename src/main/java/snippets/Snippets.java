@@ -618,4 +618,10 @@ public abstract class Snippets {
                 .map(String::toLowerCase)
                 .collect(Collectors.joining("_"));
     }
+
+    public static String truncateString(String input, int num) {
+        return input.length() > num
+                ? input.substring(0, num > 3 ? num - 3 : num) + "..."
+                : input;
+    }
 }
