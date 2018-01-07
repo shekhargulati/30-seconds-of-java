@@ -685,4 +685,8 @@ public abstract class Snippets {
         return IntStream.range(0, input.length())
                 .allMatch(i -> Character.isDigit(input.charAt(i)));
     }
+
+    public static int findNextPositivePowerOfTwo(int value) {
+        return 1 << (32 - Integer.numberOfLeadingZeros(value - 1));
+    }
 }

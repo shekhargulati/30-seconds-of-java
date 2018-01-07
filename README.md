@@ -57,6 +57,7 @@
 * [`average`](#average)
 * [`gcd`](#gcd)
 * [`lcm`](#lcm)
+* [`findNextPositivePowerOfTwo`](#findnextpositivepoweroftwo)
 
 </details>
 
@@ -727,6 +728,20 @@ private static int gcd(int a, int b) {
         return a;
     }
     return gcd(b, a % b);
+}
+```
+
+### findNextPositivePowerOfTwo
+
+Finds the next power of two greater than or equal to the value.
+
+This method uses left ship operator to shift 1 by the value on the right side. The right side is calculated using the `Integer.numberOfLeadingZeros` method.
+
+The `Integer.numberOfLeadingZeros` give the number of zeros leading the value. For example, calling `Integer.numberOfLeadingZeros(3)` would give value as 30. This is because 3 is represented in binary as `11`. As integer has 32 bits, so there are 30 bits with 0.  The right side of the left shift operator becomes `32-30 = 2`. Left shifting 1 by 2 i.e. `001 << 2` would be `100`. `100` in decimal is equal to `4`.
+
+```java
+public static int findNextPositivePowerOfTwo(int value) {
+    return 1 << (32 - Integer.numberOfLeadingZeros(value - 1));
 }
 ```
 

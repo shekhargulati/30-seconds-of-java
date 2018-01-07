@@ -640,4 +640,12 @@ public class SnippetsTests {
         assertThat(Snippets.isNumeric("abc")).isFalse();
         assertThat(Snippets.isNumeric("")).isFalse();
     }
+
+    @Test
+    public void findNextPositivePowerOfTwo_test() throws Exception {
+        assertThat(Snippets.findNextPositivePowerOfTwo(-1)).isEqualTo(1);
+        assertThat(Snippets.findNextPositivePowerOfTwo(3)).isEqualTo(4);
+        assertThat(Snippets.findNextPositivePowerOfTwo(31)).isEqualTo(32);
+        assertThat(Snippets.findNextPositivePowerOfTwo(32)).isEqualTo(32);
+    }
 }
