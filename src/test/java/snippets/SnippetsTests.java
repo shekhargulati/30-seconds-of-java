@@ -648,4 +648,13 @@ public class SnippetsTests {
         assertThat(Snippets.findNextPositivePowerOfTwo(31)).isEqualTo(32);
         assertThat(Snippets.findNextPositivePowerOfTwo(32)).isEqualTo(32);
     }
+
+    @Test
+    public void isEven_test() throws Exception {
+        assertThat(Snippets.isEven(1)).isFalse();
+        assertThat(Snippets.isEven(2)).isTrue();
+        assertThat(Snippets.isEven(3)).isFalse();
+        assertThat(Snippets.isEven(4)).isTrue();
+        assertThat(Snippets.isEven(-1)).isFalse();
+    }
 }

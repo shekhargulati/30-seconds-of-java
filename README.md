@@ -745,6 +745,18 @@ public static int findNextPositivePowerOfTwo(int value) {
 }
 ```
 
+### isEven
+
+Check if the number is even.
+
+This method uses bitwise & operator. The `0b1` is the binary representation of 1. Since, Java 7 you can write binary literals by prefixing them with either `0b` or `0B`.  The & operator will return 0 when number is even. For example, `IsEven(4)` would result in `100` `&` `001`.  The result of `&` will be `000`.
+
+```java
+public static boolean isEven(final int value) {
+    return (value & 0b1) == 0;
+}
+```
+
 ## String
 
 ### anagrams

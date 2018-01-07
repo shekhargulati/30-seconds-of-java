@@ -689,4 +689,8 @@ public abstract class Snippets {
     public static int findNextPositivePowerOfTwo(int value) {
         return 1 << (32 - Integer.numberOfLeadingZeros(value - 1));
     }
+
+    public static boolean isEven(final int value) {
+        return (value & 0b1) == 0;
+    }
 }
