@@ -1,6 +1,112 @@
-# 30-seconds-of-code-java
+# little-java-functions
 
-Curated collection of useful Java 8 snippets that you can understand in 30 seconds or less. This is Java 8 fork of [30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code).
+> Curated collection of useful little Java functions that you can understand quickly.
+
+## Table of Contents
+
+### Array
+
+<details>
+<summary>View contents</summary>
+* [`chunk`](#chunk)
+* [`compact`](#compact)
+* [`countOccurrences`](#countoccurrences)
+* [`deepFlatten`](#deepflatten)
+* [`difference`](#difference)
+* [`differenceWith`](#differencewith)
+* [`distinctValuesOfArray`](#distinctvaluesofarray)
+* [`dropElements`](#dropelements)
+* [`dropRight`](#dropright)
+* [`everyNth`](#everynth)
+* [`filterNonUnique`](#filternonunique)
+* [`flatten`](#flatten)
+* [`flattenDepth`](#flattendepth)
+* [`groupBy`](#groupby)
+* [`head`](#head)
+* [`indexOfAll`](#indexofall)
+* [`initial`](#initial)
+* [`initialize2DArray`](#initialize2darray)
+* [`initializeArrayWithRange`](#initializearraywithrange)
+* [`initializeArrayWithValues`](#initializearraywithvalues)
+* [`intersection`](#intersection)
+* [`isSorted`](#issorted)
+* [`join`](#join)
+* [`last`](#last)
+* [`mapObject`](#mapobject)
+* [`maxN`](#maxn)
+* [`minN`](#minn)
+* [`nthElement`](#nthelement)
+* [`pick`](#pick)
+* [`pull`](#pull)
+* [`pullAtIndex`](#pullatindex)
+* [`pullAtValue`](#pullatvalue)
+* [`reducedFilter`](#reducedfilter)
+* [`remove`](#remove)
+* [`sample`](#sample)
+* [`sampleSize`](#samplesize)
+* [`shuffle`](#shuffle)
+* [`similarity`](#similarity)
+* [`sortedIndex`](#sortedindex)
+* [`symmetricDifference`](#symmetricdifference)
+* [`tail`](#tail)
+* [`take`](#take)
+* [`takeRight`](#takeright)
+* [`union`](#union)
+* [`without`](#without)
+* [`zip`](#zip)
+* [`zipObject`](#zipobject)
+
+### Math
+
+<details>
+<summary>View contents</summary>
+
+* [`average`](#average)
+
+### String
+
+<details>
+<summary>View contents</summary>
+
+* [`anagrams`](#anagrams)
+* [`byteSize`](#bytesize)
+* [`capitalize`](#capitalize)
+* [`capitalizeEveryWord`](#capitalizeeveryword)
+* [`countVowels`](#countvowels)
+* [`escapeHTML`](#escapehtml)
+* [`escapeRegExp`](#escaperegexp)
+* [`fromCamelCase`](#fromcamelcase)
+* [`isAbsoluteURL`](#isabsoluteurl)
+* [`isLowerCase`](#islowercase)
+* [`isUpperCase`](#isuppercase)
+* [`mask`](#mask)
+* [`palindrome`](#palindrome)
+* [`pluralize`](#pluralize)
+* [`reverseString`](#reversestring)
+* [`sortCharactersInString`](#sortcharactersinstring)
+* [`splitLines`](#splitlines)
+* [`toCamelCase`](#tocamelcase)
+* [`toKebabCase`](#tokebabcase)
+* [`toSnakeCase`](#tosnakecase)
+* [`truncateString`](#truncatestring)
+* [`unescapeHTML`](#unescapehtml)
+* [`words`](#words)
+
+### IO
+
+<details>
+<summary>View contents</summary>
+
+* [`convertInputStreamToString`](#convertInputStreamToString)
+* [`readFileAsString`](#readFileAsString)
+* [`getCurrentWorkingDirectoryPath`](#getCurrentWorkingDirectoryPath)
+
+### Exception
+
+<details>
+<summary>View contents</summary>
+
+* [`stackTraceAsString`](#stackTraceAsString)
 
 ## Array
 
@@ -75,6 +181,17 @@ public static int[][] chunk(int[] numbers, int size) {
             .limit((long) Math.ceil((double) numbers.length / size))
             .mapToObj(cur -> Arrays.copyOfRange(numbers, cur, cur + size > numbers.length ? numbers.length : cur + size))
             .toArray(int[][]::new);
+}
+```
+
+### concat
+
+```java
+public static <T> T[] concat(T[] first, T[] second) {
+    return Stream.concat(
+            Stream.of(first),
+            Stream.of(second)
+    ).toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, first.getClass()));
 }
 ```
 
@@ -342,3 +459,504 @@ public static int[] intersection(int[] first, int[] second) {
             .toArray();
 }
 ```
+
+### isSorted
+
+```java
+public static <T extends Comparable<? super T>> int isSorted(T[] arr) {
+    final int direction = arr[0].compareTo(arr[1]) < 0 ? 1 : -1;
+    for (int i = 0; i < arr.length; i++) {
+        T val = arr[i];
+        if (i == arr.length - 1) return direction;
+        else if ((val.compareTo(arr[i + 1]) * direction > 0)) return 0;
+    }
+    return direction;
+}
+```
+
+### join
+
+```java
+public static <T> String join(T[] arr, String separator, String end) {
+    return IntStream.range(0, arr.length)
+            .mapToObj(i -> new SimpleEntry<>(i, arr[i]))
+            .reduce("", (acc, val) -> val.getKey() == arr.length - 2
+                    ? acc + val.getValue() + end
+                    : val.getKey() == arr.length - 1 ? acc + val.getValue() : acc + val.getValue() + separator, (fst, snd) -> fst);
+}
+```
+
+### nthElement
+
+```Java
+public static <T> T nthElement(T[] arr, int n) {
+    if (n > 0) {
+        return Arrays.copyOfRange(arr, n, arr.length)[0];
+    }
+    return Arrays.copyOfRange(arr, arr.length + n, arr.length)[0];
+}
+```
+
+### pick
+
+```java
+public static <T, R> Map<T, R> pick(Map<T, R> obj, T[] arr) {
+    return Arrays.stream(arr)
+            .filter(obj::containsKey)
+            .collect(Collectors.toMap(k -> k, obj::get));
+}
+```
+
+### reducedFilter
+
+```java
+public static Map<String, Object>[] reducedFilter(Map<String, Object>[] data, String[] keys, Predicate<Map<String, Object>> fn) {
+    return Arrays.stream(data)
+            .filter(fn)
+            .map(el -> Arrays.stream(keys).filter(el::containsKey)
+                    .collect(Collectors.toMap(Function.identity(), el::get)))
+            .toArray((IntFunction<Map<String, Object>[]>) Map[]::new);
+}
+```
+
+### sample
+
+```java
+public static <T> T sample(T[] arr) {
+    return arr[(int) Math.floor(Math.random() * arr.length)];
+}
+```
+
+### sampleSize
+
+```java
+public static <T> T[] sampleSize(T[] input, int n) {
+    T[] arr = Arrays.copyOf(input, input.length);
+    int length = arr.length;
+    int m = length;
+    while (m > 0) {
+        int i = (int) Math.floor(Math.random() * m--);
+        T tmp = arr[i];
+        arr[i] = arr[m];
+        arr[m] = tmp;
+    }
+    return Arrays.copyOfRange(arr, 0, n > length ? length : n);
+}
+```
+
+### shuffle
+
+```java
+public static <T> T[] shuffle(T[] input) {
+    T[] arr = Arrays.copyOf(input, input.length);
+    int length = arr.length;
+    int m = length;
+    while (m > 0) {
+        int i = (int) Math.floor(Math.random() * m--);
+        T tmp = arr[i];
+        arr[i] = arr[m];
+        arr[m] = tmp;
+    }
+    return arr;
+}
+```
+
+### similarity
+
+```java
+public static <T> T[] similarity(T[] first, T[] second) {
+    return Arrays.stream(first)
+            .filter(a -> Arrays.stream(second).anyMatch(b -> Objects.equals(a, b)))
+            // Make a new array of first's runtime type, but empty content:
+            .toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, first.getClass()));
+}
+```
+
+### sortedIndex
+
+```java
+public static <T extends Comparable<? super T>> int sortedIndex(T[] arr, T el) {
+    boolean isDescending = arr[0].compareTo(arr[arr.length - 1]) > 0;
+    return IntStream.range(0, arr.length)
+            .filter(i -> isDescending ? el.compareTo(arr[i]) >= 0 : el.compareTo(arr[i]) <= 0)
+            .findFirst()
+            .orElse(arr.length);
+}
+```
+
+### symmetricDifference
+
+```java
+public static <T> T[] symmetricDifference(T[] first, T[] second) {
+    Set<T> sA = new HashSet<>(Arrays.asList(first));
+    Set<T> sB = new HashSet<>(Arrays.asList(second));
+
+    return Stream.concat(
+            Arrays.stream(first).filter(a -> !sB.contains(a)),
+            Arrays.stream(second).filter(b -> !sA.contains(b))
+    ).toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, first.getClass()));
+}
+```
+
+### tail
+
+```java
+public static <T> T[] tail(T[] arr) {
+    return arr.length > 1
+            ? Arrays.copyOfRange(arr, 1, arr.length)
+            : arr;
+}
+```
+
+### take
+
+```java
+public static <T> T[] take(T[] arr, int n) {
+    return Arrays.copyOfRange(arr, 0, n);
+}
+```
+
+### takeRight
+
+```java
+public static <T> T[] takeRight(T[] arr, int n) {
+    return Arrays.copyOfRange(arr, arr.length - n, arr.length);
+}
+```
+
+### union
+
+```Java
+public static <T> T[] union(T[] first, T[] second) {
+    Set<T> set = new HashSet<>(Arrays.asList(first));
+    set.addAll(Arrays.asList(second));
+    return set.toArray((T[]) Arrays.copyOf(new Object[0], 0, first.getClass()));
+}
+```
+
+### without
+
+```java
+public static <T> T[] without(T[] arr, T... elements) {
+    List<T> excludeElements = Arrays.asList(elements);
+    return Arrays.stream(arr)
+            .filter(el -> !excludeElements.contains(el))
+            .toArray(i -> (T[]) Arrays.copyOf(new Object[0], i, arr.getClass()));
+}
+```
+
+### zip
+
+```java
+public static List<Object[]> zip(Object[]... arrays) {
+    OptionalInt max = Arrays.stream(arrays).mapToInt(arr -> arr.length).max();
+    return IntStream.range(0, max.getAsInt())
+            .mapToObj(i -> Arrays.stream(arrays)
+                    .map(arr -> i < arr.length ? arr[i] : null)
+                    .toArray())
+            .collect(Collectors.toList());
+}
+```
+
+### zipObject
+
+```java
+public static Map<String, Object> zipObject(String[] props, Object[] values) {
+    return IntStream.range(0, props.length)
+            .mapToObj(i -> new SimpleEntry<>(props[i], i < values.length ? values[i] : null))
+            .collect(
+                    HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
+}
+```
+
+## Maths
+
+### average
+
+```java
+public static double average(int[] arr) {
+    return IntStream.of(arr)
+            .average()
+            .orElseThrow(() -> new IllegalArgumentException("Array is empty"));
+}
+```
+
+## String
+
+### anagrams
+
+```java
+public static List<String> anagrams(String input) {
+    if (input.length() <= 2) {
+        return input.length() == 2
+                ? Arrays.asList(input, input.substring(1) + input.substring(0, 1))
+                : Collections.singletonList(input);
+    }
+    return IntStream.range(0, input.length())
+            .mapToObj(i -> new SimpleEntry<>(i, input.substring(i, i + 1)))
+            .flatMap(entry ->
+                    anagrams(input.substring(0, entry.getKey()) + input.substring(entry.getKey() + 1))
+                            .stream()
+                            .map(s -> entry.getValue() + s))
+            .collect(Collectors.toList());
+}
+```
+
+### byteSize
+
+```java
+public static int byteSize(String input) {
+    return input.getBytes().length;
+}
+```
+
+### capitalize
+
+```Java
+public static String capitalize(String input, boolean lowerRest) {
+    return input.substring(0, 1).toUpperCase() +
+            (lowerRest
+                    ? input.substring(1, input.length()).toLowerCase()
+                    : input.substring(1, input.length()));
+}
+```
+
+### capitalizeEveryWord
+
+```java
+public static String capitalizeEveryWord(final String input) {
+    return Pattern.compile("\\b(?=\\w)").splitAsStream(input)
+            .map(w -> capitalize(w, false))
+            .collect(Collectors.joining());
+}
+```
+
+### countVowels
+
+```java
+public static int countVowels(String input) {
+    return input.replaceAll("[^aeiouAEIOU]", "").length();
+}
+```
+
+### escapeRegExp
+
+```java
+public static String escapeRegExp(String input) {
+    return Pattern.quote(input);
+}
+```
+
+### fromCamelCase
+
+```java
+public static String fromCamelCase(String input, String separator) {
+    return input
+            .replaceAll("([a-z\\d])([A-Z])", "$1" + separator + "$2")
+            .toLowerCase();
+}
+```
+
+### isAbsoluteUrl
+
+```java
+public static boolean isAbsoluteUrl(String url) {
+    return Pattern.compile("^[a-z][a-z0-9+.-]*:").matcher(url).find();
+}
+```
+
+### isLowerCase
+
+```java
+public static boolean isLowerCase(String input) {
+    return Objects.equals(input, input.toLowerCase());
+}
+```
+
+### isUpperCase
+
+```java
+public static boolean isUpperCase(String input) {
+    return Objects.equals(input, input.toUpperCase());
+}
+```
+
+### isPalindrome
+
+```java
+public static boolean isPalindrome(String input) {
+    String s = input.toLowerCase().replaceAll("[\\W_]", "");
+    return Objects.equals(
+            s,
+            new StringBuilder(s).reverse().toString()
+    );
+}
+```
+
+### isNumeric
+
+```java
+public static boolean isNumeric(final String input) {
+    return IntStream.range(0, input.length())
+            .allMatch(i -> Character.isDigit(input.charAt(i)));
+}
+```
+
+### mask
+
+```Java
+public static String mask(String input, int num, String mask) {
+    int length = input.length();
+    return num > 0
+            ?
+            input.substring(0, length - num).replaceAll(".", mask)
+                    + input.substring(length - num)
+            :
+            input.substring(0, Math.negateExact(num))
+                    + input.substring(Math.negateExact(num), length).replaceAll(".", mask);
+}
+```
+
+### reverseString
+
+```java
+public static String reverseString(String input) {
+    return new StringBuilder(input).reverse().toString();
+}
+```
+
+### sortCharactersInString
+
+```java
+public static String sortCharactersInString(String input) {
+    return Arrays.stream(input.split("")).sorted().collect(Collectors.joining());
+}
+```
+
+ ### splitLines
+
+```java
+public static String[] splitLines(String input) {
+    return input.split("\\r?\\n");
+}
+```
+
+### toCamelCase
+
+```java
+public static String toCamelCase(String input) {
+    Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
+    List<String> matchedParts = new ArrayList<>();
+    while (matcher.find()) {
+        matchedParts.add(matcher.group(0));
+    }
+    String s = matchedParts.stream()
+            .map(x -> x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase())
+            .collect(Collectors.joining());
+    return s.substring(0, 1).toLowerCase() + s.substring(1);
+}
+
+```
+
+### toKebabCase
+
+```java
+public static String toKebabCase(String input) {
+    Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
+    List<String> matchedParts = new ArrayList<>();
+    while (matcher.find()) {
+        matchedParts.add(matcher.group(0));
+    }
+    return matchedParts.stream()
+            .map(String::toLowerCase)
+            .collect(Collectors.joining("-"));
+}
+```
+
+
+
+### match
+
+```java
+public static List<String> match(String input, String regex) {
+    Matcher matcher = Pattern.compile(regex).matcher(input);
+    List<String> matchedParts = new ArrayList<>();
+    while (matcher.find()) {
+        matchedParts.add(matcher.group(0));
+    }
+    return matchedParts;
+}
+
+```
+
+### toSnakeCase
+
+```java
+public static String toSnakeCase(String input) {
+    Matcher matcher = Pattern.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+").matcher(input);
+    List<String> matchedParts = new ArrayList<>();
+    while (matcher.find()) {
+        matchedParts.add(matcher.group(0));
+    }
+    return matchedParts.stream()
+            .map(String::toLowerCase)
+            .collect(Collectors.joining("_"));
+}
+```
+
+### truncateString
+
+```java
+public static String truncateString(String input, int num) {
+    return input.length() > num
+            ? input.substring(0, num > 3 ? num - 3 : num) + "..."
+            : input;
+}
+```
+
+## IO
+
+### convertInputStreamToString
+
+```java
+public static String convertInputStreamToString(final InputStream in) throws IOException {
+    ByteArrayOutputStream result = new ByteArrayOutputStream();
+    byte[] buffer = new byte[1024];
+    int length;
+    while ((length = in.read(buffer)) != -1) {
+        result.write(buffer, 0, length);
+    }
+    return result.toString(StandardCharsets.UTF_8.name());
+}
+```
+
+### readFileAsString
+
+```java
+public String readFileAsString(Path path) throws IOException {
+    return new String(Files.readAllBytes(path));
+}
+```
+
+### getCurrentWorkingDirectoryPath
+
+```java
+public static String getCurrentWorkingDirectoryPath() {
+    return FileSystems.getDefault().getPath("").toAbsolutePath().toString();
+}
+```
+
+## Exception
+
+### stackTraceAsString
+
+```java
+public static String stackTraceAsString(final Throwable throwable) {
+    final StringWriter sw = new StringWriter();
+    throwable.printStackTrace(new PrintWriter(sw));
+    return sw.toString();
+}
+```
+## Thanks
+
+This project is inspired by [30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code). The 30-seconds-of-code repository has JavaScript snippets. I am trying to focus on Java.

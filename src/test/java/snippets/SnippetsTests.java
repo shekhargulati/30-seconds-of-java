@@ -633,4 +633,11 @@ public class SnippetsTests {
     public void getCurrentWorkingDirectoryPath_test() throws Exception {
         assertThat(Snippets.getCurrentWorkingDirectoryPath()).isNotBlank();
     }
+
+    @Test
+    public void isNumeric_test() throws Exception {
+        assertThat(Snippets.isNumeric("123")).isTrue();
+        assertThat(Snippets.isNumeric("abc")).isFalse();
+        assertThat(Snippets.isNumeric("")).isFalse();
+    }
 }

@@ -678,16 +678,11 @@ public abstract class Snippets {
         return FileSystems.getDefault().getPath("").toAbsolutePath().toString();
     }
 
-    public static boolean isNumeric(final String cs) {
-        if (cs == null || cs.isEmpty()) {
+    public static boolean isNumeric(final String input) {
+        if (input == null || input.isEmpty()) {
             return false;
         }
-        final int length = cs.length();
-        for (int i = 0; i < length; i++) {
-            if (!Character.isDigit(cs.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+        return IntStream.range(0, input.length())
+                .allMatch(i -> Character.isDigit(input.charAt(i)));
     }
 }
