@@ -55,6 +55,8 @@
 <summary>View contents</summary>
 
 * [`average`](#average)
+* [`gcd`](#gcd)
+* [`lcm`](#lcm)
 
 </details>
 
