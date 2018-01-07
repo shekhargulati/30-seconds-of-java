@@ -58,6 +58,8 @@
 * [`gcd`](#gcd)
 * [`lcm`](#lcm)
 * [`findNextPositivePowerOfTwo`](#findnextpositivepoweroftwo)
+* [`isEven`](#iseven)
+* [`isPowerOfTwo`](#ispoweroftwo)
 
 </details>
 
