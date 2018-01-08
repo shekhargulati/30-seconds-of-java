@@ -38,6 +38,26 @@ import java.util.stream.Stream;
 
 public abstract class Snippets {
 
+
+    /** Input a line of numbers separated by space as integers
+     * and return ArrayList of Integers.
+     * eg. the String "1 2 3 4 5 6 7 8 9" is returned as an ArrayList of Integers.
+     * 
+     * @param numbers range of numbers separated by space as a string
+     * @return ArrayList of Integers
+     */
+    
+    public static ArrayList<Integer> inputInt(String numbers)
+    {
+        ArrayList<Integer> n = new ArrayList<>();
+        String temp[] = numbers.split(" ");
+        int length = temp.length;
+        for(int i = 0;i<length;i++) n.add(Integer.parseInt(temp[i]));
+        return n;
+    }
+    
+    
+
     /**
      * Calculates the greatest common denominator (gcd) of an array of numbers
      *
@@ -725,4 +745,6 @@ public abstract class Snippets {
                 .anyMatch(arg -> arg.contains("-agentlib:jdwp"));
 
     }
+
+
 }
