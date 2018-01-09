@@ -79,8 +79,8 @@
 * [`isAbsoluteURL`](#isabsoluteurl)
 * [`isLowerCase`](#islowercase)
 * [`isUpperCase`](#isuppercase)
-* [`isPalindrome`](#isPalindrome)
-* [`isNumeric`](#isNumeric)
+* [`isPalindrome`](#ispalindrome)
+* [`isNumeric`](#isnumeric)
 * [`mask`](#mask)
 * [`reverseString`](#reversestring)
 * [`sortCharactersInString`](#sortcharactersinstring)
@@ -91,6 +91,8 @@
 * [`toSnakeCase`](#tosnakecase)
 * [`truncateString`](#truncatestring)
 * [`words`](#words)
+* [`stringToIntegers`](#stringtointegers)
+
 
 </details>
 
@@ -1084,6 +1086,17 @@ public static String[] words(String input) {
             .toArray(String[]::new);
 }
 ```
+
+### stringToIntegers
+
+Converts a String of numbers separated by space to an array of ints.
+
+```Java
+public static int[] stringToIntegers(String numbers) {
+        return Arrays.stream(numbers.split(" ")).mapToInt(Integer::parseInt).toArray();
+}
+```
+
 
 ## IO
 
