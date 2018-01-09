@@ -1089,13 +1089,12 @@ public static String[] words(String input) {
 
 ### stringToIntegers
 
-Converts a String of numbers separated by space to arrays of ints
+Converts a String of numbers separated by space to an array of ints.
 
 ```Java
-public static int[] stringToIntegers(String numbers)
-    {
+public static int[] stringToIntegers(String numbers) {
         return Arrays.stream(numbers.split(" ")).mapToInt(Integer::parseInt).toArray();
-    }
+}
 ```
 
 
