@@ -91,6 +91,8 @@
 * [`toSnakeCase`](#tosnakecase)
 * [`truncateString`](#truncatestring)
 * [`words`](#words)
+* [`stringToIntegers`](#stringToIntegers)
+
 
 </details>
 
@@ -1084,6 +1086,18 @@ public static String[] words(String input) {
             .toArray(String[]::new);
 }
 ```
+
+### stringToIntegers
+
+Converts a String of numbers separated by space to arrays of ints
+
+```Java
+public static int[] stringToIntegers(String numbers)
+    {
+        return Arrays.stream(numbers.split(" ")).mapToInt(Integer::parseInt).toArray();
+    }
+```
+
 
 ## IO
 
