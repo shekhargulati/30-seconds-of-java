@@ -38,11 +38,6 @@ import java.util.stream.Stream;
 
 public abstract class Snippets {
 
-
-    
-    
-    
-
     /**
      * Calculates the greatest common denominator (gcd) of an array of numbers
      *
@@ -743,6 +738,5 @@ public abstract class Snippets {
     {
         return Arrays.stream(numbers.split(" ")).mapToInt(Integer::parseInt).toArray();
     }
-
 
 }
