@@ -1,0 +1,5 @@
+language: java
+install: ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script: ./mvnw test -B
+jdk:
+  - oraclejdk8
