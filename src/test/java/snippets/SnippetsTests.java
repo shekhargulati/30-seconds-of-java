@@ -657,4 +657,10 @@ public class SnippetsTests {
         assertThat(Snippets.isEven(4)).isTrue();
         assertThat(Snippets.isEven(-1)).isFalse();
     }
+
+    @Test
+    public void stringToIntegers_test() throws Exception {
+        int[] intArray = Snippets.stringToIntegers("1 2 3 4 5");
+        assertThat(intArray).isEqualTo(new int[]{1,2,3,4,5});
+    }
 }
