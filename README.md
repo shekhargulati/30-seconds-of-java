@@ -157,7 +157,7 @@ public static <T> T[] concat(T[] first, T[] second) {
 
 Counts the occurrences of a value in an array.
 
-Use Array.stream().filter().count() to count total number of values that equals the specified value.
+Use Arrays.stream().filter().count() to count total number of values that equals the specified value.
 
 ```java
 public static long countOccurrences(int[] numbers, int value) {
@@ -171,7 +171,7 @@ public static long countOccurrences(int[] numbers, int value) {
 
 Deep flattens an array.
 
-Use recursion. Use Array.stream().flatMapToInt()
+Use recursion. Use Arrays.stream().flatMapToInt()
 
 ```java
 public static int[] deepFlatten(Object[] input) {
@@ -189,7 +189,7 @@ public static int[] deepFlatten(Object[] input) {
 
 Returns the difference between two arrays.
 
-Create a Set from b, then use Array.stream().filter() on a to only keep values not contained in b.
+Create a Set from b, then use Arrays.stream().filter() on a to only keep values not contained in b.
 
 ```java
 public static int[] difference(int[] first, int[] second) {
@@ -206,7 +206,7 @@ Filters out all values from an array for which the comparator function does not 
 
 The comparator for int is implemented using IntBinaryOperator function.
 
-Uses Array.stream().filter and Array.stream().noneMatch() to find the appropriate values.
+Uses Arrays.stream().filter and Arrays.stream().noneMatch() to find the appropriate values.
 
 ```java
 public static int[] differenceWith(int[] first, int[] second, IntBinaryOperator comparator) {
@@ -222,7 +222,7 @@ public static int[] differenceWith(int[] first, int[] second, IntBinaryOperator 
 
 Returns all the distinct values of an array.
 
-Uses Array.stream().distinct() to discard all duplicated values.
+Uses Arrays.stream().distinct() to discard all duplicated values.
 
 ```java
 public static int[] distinctValuesOfArray(int[] elements) {
@@ -313,7 +313,7 @@ public static int lastIndexOf(int[] elements, int el) {
 
 Filters out the non-unique values in an array.
 
-Use Array.stream().filter() for an array containing only the unique values.
+Use Arrays.stream().filter() for an array containing only the unique values.
 
 ```java
 public static int[] filterNonUnique(int[] elements) {
@@ -327,7 +327,7 @@ public static int[] filterNonUnique(int[] elements) {
 
 Flattens an array.
 
-Use Array.stream().flatMapToInt().toArray() to create a new array.
+Use Arrays.stream().flatMapToInt().toArray() to create a new array.
 
 
 ```java
@@ -407,7 +407,7 @@ public static int[] initializeArrayWithValues(int n, int value) {
 
 Returns a list of elements that exist in both arrays.
 
-Create a Set from second, then use Array.stream().filter() on a to only keep values contained in b.
+Create a Set from second, then use Arrays.stream().filter() on a to only keep values contained in b.
 
 ```java
 public static int[] intersection(int[] first, int[] second) {
@@ -471,7 +471,7 @@ public static <T> T nthElement(T[] arr, int n) {
 
 Picks the key-value pairs corresponding to the given keys from an object.
 
-Use `Array.stream` to filter all the keys that are present in the `arr`. Then, convert all the keys present into a Map using `Collectors.toMap`.
+Use `Arrays.stream` to filter all the keys that are present in the `arr`. Then, convert all the keys present into a Map using `Collectors.toMap`.
 
 ```java
 public static <T, R> Map<T, R> pick(Map<T, R> obj, T[] arr) {
@@ -586,7 +586,7 @@ public static <T extends Comparable<? super T>> int sortedIndex(T[] arr, T el) {
 
 Returns the symmetric difference between two arrays.
 
-Create a `Set` from each array, then use `Array.stream().filter()` on each of them to only keep values not contained in the other. Finally, concatenate both arrays and create a new array and return it.
+Create a `Set` from each array, then use `Arrays.stream().filter()` on each of them to only keep values not contained in the other. Finally, concatenate both arrays and create a new array and return it.
 
 ```java
 public static <T> T[] symmetricDifference(T[] first, T[] second) {
@@ -711,7 +711,7 @@ public static double average(int[] arr) {
 
 Calculates the greatest common denominator (gcd) of an array of numbers.
 
-Use Array.stream().reduce() and the gcd formula (uses recursion) to calculate the greatest common denominator of an array of numbers.
+Use Arrays.stream().reduce() and the gcd formula (uses recursion) to calculate the greatest common denominator of an array of numbers.
 
 ```java
 public static OptionalInt gcd(int[] numbers) {
@@ -731,7 +731,7 @@ private static int gcd(int a, int b) {
 
 Calculates the lowest common multiple (lcm) of an array of numbers.
 
-Use Array.stream().reduce() and the lcm formula (uses recursion) to calculate the lowest common multiple of an array of numbers.
+Use Arrays.stream().reduce() and the lcm formula (uses recursion) to calculate the lowest common multiple of an array of numbers.
 
 ```java
 public static OptionalInt lcm(int[] numbers) {
