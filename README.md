@@ -137,6 +137,15 @@
 
 </details>
 
+### Enum
+
+<details>
+<summary>View contents</summary>
+
+- [`getEnumMap`](#getenummap)
+
+</details>
+
 ## Array
 
 ### chunk
@@ -1223,6 +1232,19 @@ This method checks if the specified class is an inner class or static nested cla
 ```Java
 public static boolean isInnerClass(final Class<?> cls) {
     return cls != null && cls.getEnclosingClass() != null;
+}
+```
+
+## Enum
+
+### getEnumMap
+
+Converts to enum to Map where key is the name and value is Enum itself.
+
+```java
+public static <E extends Enum<E>> Map<String, E> getEnumMap(final Class<E> enumClass) {
+    return Arrays.stream(enumClass.getEnumConstants())
+            .collect(Collectors.toMap(Enum::name, Function.identity()));
 }
 ```
 

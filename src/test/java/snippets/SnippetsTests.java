@@ -703,4 +703,19 @@ public class SnippetsTests {
         assertThat(list).containsExactly(I2.class, I3.class, I4.class, I5.class, I6.class, I1.class);
     }
 
+    enum Priority {
+        High, Medium, Low
+    }
+
+    @Test
+    public void getEnumMap_convert_enum_to_map() throws Exception {
+        Map<String, Priority> map = Snippets.getEnumMap(Priority.class);
+        assertThat(map).hasSize(3);
+        assertThat(map)
+                .containsOnly(
+                        new SimpleEntry<>("High", Priority.High),
+                        new SimpleEntry<>("Medium", Priority.Medium),
+                        new SimpleEntry<>("Low", Priority.Low)
+                );
+    }
 }

@@ -753,4 +753,8 @@ public abstract class Snippets {
         return cls != null && cls.getEnclosingClass() != null;
     }
 
+    public static <E extends Enum<E>> Map<String, E> getEnumMap(final Class<E> enumClass) {
+        return Arrays.stream(enumClass.getEnumConstants())
+                .collect(Collectors.toMap(Enum::name, Function.identity()));
+    }
 }
