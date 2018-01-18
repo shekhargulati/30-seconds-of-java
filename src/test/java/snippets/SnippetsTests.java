@@ -661,6 +661,46 @@ public class SnippetsTests {
     @Test
     public void stringToIntegers_test() throws Exception {
         int[] intArray = Snippets.stringToIntegers("1 2 3 4 5");
-        assertThat(intArray).isEqualTo(new int[]{1,2,3,4,5});
+        assertThat(intArray).isEqualTo(new int[]{1, 2, 3, 4, 5});
     }
+
+    private static class Class1 implements I2, I1, I5 {
+        // empty
+    }
+
+    private static class Class2 extends Class1 implements I2, I3 {
+        // empty
+    }
+
+    private interface I1 {
+        // empty
+    }
+
+    private interface I2 {
+        // empty
+    }
+
+    private interface I3 extends I4, I5 {
+        // empty
+    }
+
+    private interface I4 {
+        // empty
+    }
+
+    private interface I5 extends I6 {
+        // empty
+    }
+
+    private interface I6 {
+        // empty
+    }
+
+    @Test
+    public void getAllInterfaces_shouldFindAllInterfacesImplementedByAClass() {
+        final List<Class<?>> list = Snippets.getAllInterfaces(Class2.class);
+        assertThat(list).hasSize(6);
+        assertThat(list).containsExactly(I2.class, I3.class, I4.class, I5.class, I6.class, I1.class);
+    }
+
 }

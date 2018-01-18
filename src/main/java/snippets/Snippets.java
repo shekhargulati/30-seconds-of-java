@@ -726,17 +726,27 @@ public abstract class Snippets {
 
     }
 
-    /** Input a line of numbers separated by space as integers
+    /**
+     * Input a line of numbers separated by space as integers
      * and return ArrayList of Integers.
      * eg. the String "1 2 3 4 5 6 7 8 9" is returned as an ArrayList of Integers.
-     * 
+     *
      * @param numbers range of numbers separated by space as a string
      * @return ArrayList of Integers
      */
-    
-    public static int[] stringToIntegers(String numbers)
-    {
+
+    public static int[] stringToIntegers(String numbers) {
         return Arrays.stream(numbers.split(" ")).mapToInt(Integer::parseInt).toArray();
+    }
+
+    /* Class Utilities */
+
+    public static List<Class<?>> getAllInterfaces(Class<?> cls) {
+        return Stream.concat(
+                Arrays.stream(cls.getInterfaces()).flatMap(intf ->
+                        Stream.concat(Stream.of(intf), getAllInterfaces(intf).stream())),
+                cls.getSuperclass() == null ? Stream.empty() : getAllInterfaces(cls.getSuperclass()).stream()
+        ).distinct().collect(Collectors.toList());
     }
 
 }

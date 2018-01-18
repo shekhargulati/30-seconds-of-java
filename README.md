@@ -127,6 +127,15 @@
 
 </details>
 
+### Class
+
+<details>
+<summary>View contents</summary>
+
+- [`getAllInterfaces`](#getallinterfaces)
+
+</details>
+
 ## Array
 
 ### chunk
@@ -1185,6 +1194,24 @@ public static boolean isDebuggerAttached() {
             .stream()
             .anyMatch(arg -> arg.contains("-agentlib:jdwp"));
 
+}
+```
+
+## Class
+
+### getAllInterfaces
+
+This methods returns all the interfaces implemented by the given class and its superclasses.
+
+This method works by concatenating two streams. The first stream is recursively built by creating a stream with the interface and all the interfaces implemented by the the interface. The second stream does the same for the super classes. The result is the concatenation of the two streams after removing the duplicates.
+
+```java
+public static List<Class<?>> getAllInterfaces(Class<?> cls) {
+    return Stream.concat(
+            Arrays.stream(cls.getInterfaces()).flatMap(intf ->
+                    Stream.concat(Stream.of(intf), getAllInterfaces(intf).stream())),
+            cls.getSuperclass() == null ? Stream.empty() : getAllInterfaces(cls.getSuperclass()).stream()
+    ).distinct().collect(Collectors.toList());
 }
 ```
 
