@@ -741,12 +741,16 @@ public abstract class Snippets {
 
     /* Class Utilities */
 
-    public static List<Class<?>> getAllInterfaces(Class<?> cls) {
+    public static List<Class<?>> getAllInterfaces(final Class<?> cls) {
         return Stream.concat(
                 Arrays.stream(cls.getInterfaces()).flatMap(intf ->
                         Stream.concat(Stream.of(intf), getAllInterfaces(intf).stream())),
                 cls.getSuperclass() == null ? Stream.empty() : getAllInterfaces(cls.getSuperclass()).stream()
         ).distinct().collect(Collectors.toList());
+    }
+
+    public static boolean isInnerClass(final Class<?> cls) {
+        return cls != null && cls.getEnclosingClass() != null;
     }
 
 }

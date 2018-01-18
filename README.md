@@ -133,6 +133,7 @@
 <summary>View contents</summary>
 
 - [`getAllInterfaces`](#getallinterfaces)
+- [`IsInnerClass`](#isinnerclass)
 
 </details>
 
@@ -1212,6 +1213,16 @@ public static List<Class<?>> getAllInterfaces(Class<?> cls) {
                     Stream.concat(Stream.of(intf), getAllInterfaces(intf).stream())),
             cls.getSuperclass() == null ? Stream.empty() : getAllInterfaces(cls.getSuperclass()).stream()
     ).distinct().collect(Collectors.toList());
+}
+```
+
+### isInnerClass
+
+This method checks if the specified class is an inner class or static nested class
+
+```Java
+public static boolean isInnerClass(final Class<?> cls) {
+    return cls != null && cls.getEnclosingClass() != null;
 }
 ```
 
