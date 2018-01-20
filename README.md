@@ -1248,6 +1248,12 @@ public static <E extends Enum<E>> Map<String, E> getEnumMap(final Class<E> enumC
 }
 ```
 
+## In News
+
+1. Jetbrains Java Annotated Monthly covered little-java-functions in their [January newsletter](https://blog.jetbrains.com/idea/2018/01/java-annotated-monthly-january-2018/).
+2. JavaChannel podcast covered little-java-functions in their [episode 11](https://javachannel.org/posts/javachannels-interesting-links-podcast-episode-11/).
+3. little-java-functions was Github trending repository on 8th January 2018.
+
 ## Thanks
 
 This project started as a Java fork of [30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code). Thanks to the project collaborators for the effort.
