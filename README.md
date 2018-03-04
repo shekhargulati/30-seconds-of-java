@@ -1,4 +1,4 @@
-# little-java-functions [![Build Status](https://travis-ci.org/shekhargulati/little-java-functions.svg?branch=master)](https://travis-ci.org/shekhargulati/little-java-functions)
+# 30 Seconds Of Java [![Build Status](https://travis-ci.org/shekhargulati/little-java-functions.svg?branch=master)](https://travis-ci.org/shekhargulati/little-java-functions)
 
 > Curated collection of useful little Java 8 functions that you can understand quickly.
 
