@@ -812,7 +812,27 @@ public static boolean isPowerOfTwo(final int value) {
     return value > 0 && ((value & (~value + 1)) == value);
 }
 ```
+### isPalindrome
 
+Checks whether the given number is palindrome or not.
+
+```java
+  public static void main(String args[]){  
+  int r,sum=0,temp;    
+  int n=454;//It is the number variable to be checked for palindrome  
+  
+  temp=n;    
+  while(n>0){    
+   r=n%10;  //getting remainder  
+   sum=(sum*10)+r;    
+   n=n/10;    
+  }    
+  if(temp==sum)    
+   System.out.println("palindrome number ");    
+  else    
+   System.out.println("not palindrome");    
+} 
+```
 ### generateRandomInt
 
 Generate a random integer between `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.
