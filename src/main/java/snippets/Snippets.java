@@ -9,6 +9,7 @@ import java.io.StringWriter;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -747,6 +748,14 @@ public abstract class Snippets {
                         Stream.concat(Stream.of(intf), getAllInterfaces(intf).stream())),
                 cls.getSuperclass() == null ? Stream.empty() : getAllInterfaces(cls.getSuperclass()).stream()
         ).distinct().collect(Collectors.toList());
+    }
+
+    public static List<String> getAllMethods(final Class<?> cls) {
+        List<String> list = new ArrayList<>();
+        for (Method method : cls.getDeclaredMethods()) {
+            list.add(method.getName());
+        }
+        return list;
     }
 
     public static boolean isInnerClass(final Class<?> cls) {

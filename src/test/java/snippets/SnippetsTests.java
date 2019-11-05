@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -701,6 +702,21 @@ public class SnippetsTests {
         final List<Class<?>> list = Snippets.getAllInterfaces(Class2.class);
         assertThat(list).hasSize(6);
         assertThat(list).containsExactly(I2.class, I3.class, I4.class, I5.class, I6.class, I1.class);
+    }
+
+    public static class Clazz {
+        public void one() {}
+        public void two() {}
+    }
+
+    @Test
+    public void getAllMethods() {
+        List<String> list = Snippets.getAllMethods(Clazz.class);
+        assertThat(list).hasSize(2);
+        assertThat("one").isEqualTo(list.get(0));
+        assertThat("two").isEqualTo(list.get(1));
+        assertThat("onee").isNotEqualTo(list.get(0));
+        assertThat("t").isNotEqualTo(list.get(1));
     }
 
     enum Priority {
