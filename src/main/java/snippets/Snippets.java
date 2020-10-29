@@ -739,6 +739,17 @@ public abstract class Snippets {
         return Arrays.stream(numbers.split(" ")).mapToInt(Integer::parseInt).toArray();
     }
 
+    /**
+     * Retuns string after removing white spaces
+     * eg. input =  "   Hello Geeks  .  Welcome ,    Do you love Geeks , Geeks  ? "
+     *     output = "Hello Geeks . Welcome , Do you love Geeks , Geeks ?"
+     * @param a string containing whitespaces
+     * @return same string after removing white spaces
+     */
+
+    public static String removeWhiteSpaces(String s) {
+	return s.replaceAll("\\s+"," ").trim();
+    }
     /* Class Utilities */
 
     public static List<Class<?>> getAllInterfaces(final Class<?> cls) {
