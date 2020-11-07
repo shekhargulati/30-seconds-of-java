@@ -37,6 +37,17 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public abstract class Snippets {
+    /**
+     * Retuns string after removing white spaces
+     * eg. input =  "   Hello Geeks  .  Welcome ,    Do you love Geeks , Geeks  ? "
+     *     output = "Hello Geeks . Welcome , Do you love Geeks , Geeks ?"
+     * @param a string containing whitespaces
+     * @return same string after removing white spaces
+     */
+
+    public static String removeWhiteSpaces(String s) {
+	return s.replaceAll("\\s+"," ").trim();
+    }
 
     /**
      * Calculates the greatest common denominator (gcd) of an array of numbers
