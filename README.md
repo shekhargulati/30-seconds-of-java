@@ -92,7 +92,7 @@
 * [`truncateString`](#truncatestring)
 * [`words`](#words)
 * [`stringToIntegers`](#stringtointegers)
-
+* [`removeWhiteSpaces`](#removewhitespaces)
 
 </details>
 
@@ -1113,6 +1113,15 @@ Converts a String of numbers separated by space to an array of ints.
 ```Java
 public static int[] stringToIntegers(String numbers) {
         return Arrays.stream(numbers.split(" ")).mapToInt(Integer::parseInt).toArray();
+}
+```
+
+### removeWhiteSpaces
+
+Removes all white spaces from a string.
+```Java
+public static String removeWhiteSpaces(String s) {
+	return s.replaceAll("\\s+"," ").trim();
 }
 ```
 
